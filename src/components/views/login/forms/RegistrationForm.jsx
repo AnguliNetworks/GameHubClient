@@ -122,7 +122,7 @@ class RegistrationForm extends React.Component {
                 <Panel>
                     <Message type={'info'}>
                         Du hast ein Konto?
-                        <Link link={'javascript;'} onclick={this.props.switch} color={'blue'}> Melde Dich an.</Link>
+                        <Link onclick={this.props.switch} color={'blue'}> Melde Dich an.</Link>
                     </Message>
                 </Panel>
             </div>
