@@ -67,6 +67,7 @@ class RegistrationForm extends React.Component {
 
     render() {
 
+        // TODO ADD LEGAL STUFF
         this.form = (
             <Form>
                 <Input
@@ -92,7 +93,6 @@ class RegistrationForm extends React.Component {
                 </Input>
                 <Message type={'info'}>
                     Durch Deine Registrierung stimmst Du unseren
-                    <!-- TODO ADD LEGAL STUFF -->
                     <Link link={'#'} color={'black'}> Nutzungsbedingungen</Link> und
                     <Link link={'#'} color={'black'}> Datenrichtlinien</Link> zu.
                 </Message>
