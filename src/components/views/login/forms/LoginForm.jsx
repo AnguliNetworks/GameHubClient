@@ -28,7 +28,7 @@ class LoginForm extends React.Component {
                 <Panel>
                     <Message type={'info'}>
                         Noch kein Konto?
-                        <Link link={'#'} onclick={this.props.switch} color={'blue'}> Erstell Dir eins.</Link>
+                        <Link link={'javascript;'} onclick={this.props.switch} color={'blue'}> Erstell Dir eins.</Link>
                     </Message>
                 </Panel>
             </div>

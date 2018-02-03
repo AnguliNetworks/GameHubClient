@@ -28,29 +28,23 @@ class RegistrationForm extends React.Component {
             valid: value
         });
 
-        let valid = true;
+        let allValid = true;
 
-        if (!value) {
-            valid = false;
-        }
-
-        if (this.formData.size < 3) {
-            valid = false;
-        }
-
-        if (valid) {
+        if (!value || this.formData.size < 3) {
+            allValid = false;
+        } else {
             this.formData.forEach((value, key) => {
                 if (key === component.props.id) {
                     return;
                 }
 
                 if (!value.valid) {
-                    valid = false;
+                    allValid = false;
                 }
             });
         }
 
-        this.setState({enableRegistrationButton: valid});
+        this.setState({enableRegistrationButton: allValid});
     }
 
     register() {
@@ -98,8 +92,9 @@ class RegistrationForm extends React.Component {
                 </Input>
                 <Message type={'info'}>
                     Durch Deine Registrierung stimmst Du unseren
+                    <!-- TODO ADD LEGAL STUFF -->
                     <Link link={'#'} color={'black'}> Nutzungsbedingungen</Link> und
-                    <Link link={'#'} color={'black'}> Nutzungsbedingungen</Link> zu.
+                    <Link link={'#'} color={'black'}> Datenrichtlinien</Link> zu.
                 </Message>
                 <Button
                     id={'registration-button'}
@@ -127,7 +122,7 @@ class RegistrationForm extends React.Component {
                 <Panel>
                     <Message type={'info'}>
                         Du hast ein Konto?
-                        <Link link={'#'} onclick={this.props.switch} color={'blue'}> Melde Dich an.</Link>
+                        <Link link={'javascript;'} onclick={this.props.switch} color={'blue'}> Melde Dich an.</Link>
                     </Message>
                 </Panel>
             </div>
