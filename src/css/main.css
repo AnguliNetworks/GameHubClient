@@ -40,9 +40,9 @@ div.panel {
     color: #ff3b2f;
     margin-top: 55px;
     margin-bottom: -25px; }
-  div.panel div.form {
+  div.panel form.form {
     padding: 30px 0; }
-    div.panel div.form label {
+    div.panel form.form label {
       border: 0 !important;
       clip: rect(0, 0, 0, 0) !important;
       height: 1px !important;
@@ -51,7 +51,7 @@ div.panel {
       padding: 0 !important;
       position: absolute !important;
       width: 1px !important; }
-    div.panel div.form input {
+    div.panel form.form input {
       font-size: 14px;
       margin-top: 10px;
       color: #4f4f50;
@@ -61,26 +61,31 @@ div.panel {
       outline: none;
       border: 1px solid #e6e6e6;
       border-radius: 3px;
-      -webkit-transition: border-color 0.5s cubic-bezier(0.28, 0.11, 0.32, 1), color 0.5s cubic-bezier(0.28, 0.11, 0.32, 1);
-      -moz-transition: border-color 0.5s cubic-bezier(0.28, 0.11, 0.32, 1), color 0.5s cubic-bezier(0.28, 0.11, 0.32, 1);
-      -o-transition: border-color 0.5s cubic-bezier(0.28, 0.11, 0.32, 1), color 0.5s cubic-bezier(0.28, 0.11, 0.32, 1);
-      transition: border-color 0.5s cubic-bezier(0.28, 0.11, 0.32, 1), color 0.5s cubic-bezier(0.28, 0.11, 0.32, 1); }
-      div.panel div.form input::placeholder {
+      -webkit-transition: border-color 0.5s cubic-bezier(0.28, 0.11, 0.32, 1), color 0.5s cubic-bezier(0.28, 0.11, 0.32, 1), background-color 0.5s cubic-bezier(0.28, 0.11, 0.32, 1);
+      -moz-transition: border-color 0.5s cubic-bezier(0.28, 0.11, 0.32, 1), color 0.5s cubic-bezier(0.28, 0.11, 0.32, 1), background-color 0.5s cubic-bezier(0.28, 0.11, 0.32, 1);
+      -o-transition: border-color 0.5s cubic-bezier(0.28, 0.11, 0.32, 1), color 0.5s cubic-bezier(0.28, 0.11, 0.32, 1), background-color 0.5s cubic-bezier(0.28, 0.11, 0.32, 1);
+      transition: border-color 0.5s cubic-bezier(0.28, 0.11, 0.32, 1), color 0.5s cubic-bezier(0.28, 0.11, 0.32, 1), background-color 0.5s cubic-bezier(0.28, 0.11, 0.32, 1); }
+      div.panel form.form input::placeholder {
         color: #b0b0b0; }
-      div.panel div.form input:focus {
+      div.panel form.form input:focus {
         border-color: #000;
         color: #000; }
-      div.panel div.form input[type="button"] {
+      div.panel form.form input[type="button"], div.panel form.form input[type="submit"] {
         font-size: 16px;
         background-color: #007AFF;
         border: none !important;
         color: #fff !important;
         cursor: pointer; }
-        div.panel div.form input[type="button"]:hover {
+        div.panel form.form input[type="button"]:hover, div.panel form.form input[type="submit"]:hover {
           background-color: #0068cd; }
-      div.panel div.form input.invalid {
+        div.panel form.form input[type="button"]:disabled, div.panel form.form input[type="submit"]:disabled {
+          background-color: #888;
+          cursor: not-allowed; }
+      div.panel form.form input.invalid {
         border-color: #ff3b2f; }
-    div.panel div.form p.info {
+      div.panel form.form input.valid {
+        border-color: #4cd964; }
+    div.panel form.form p.info {
       padding: 10px;
       font-weight: 300;
       font-size: 0.9em; }

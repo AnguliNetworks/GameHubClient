@@ -106,7 +106,7 @@ div.panel {
     margin-bottom: -25px;
   }
 
-  div.form {
+  form.form {
     padding: 30px 0;
     label {
       @include hidden();
@@ -121,7 +121,7 @@ div.panel {
       outline: none;
       border: 1px solid rgb(230, 230, 230);
       border-radius: 3px;
-      @include transition(border-color $default-transition-time, color $default-transition-time);
+      @include transition(border-color $default-transition-time, color $default-transition-time, background-color $default-transition-time);
 
       &::placeholder {
         color: rgb(176, 176, 176);
@@ -131,7 +131,7 @@ div.panel {
         border-color: #000;
         color: #000;
       }
-      &[type="button"] {
+      &[type="button"], &[type="submit"] {
         font-size: 16px;
         background-color: #007AFF;
         border: none !important;
@@ -141,9 +141,18 @@ div.panel {
         &:hover {
           background-color: #0068cd;
         }
+
+        &:disabled {
+          background-color: #888;
+          cursor: not-allowed;
+        }
       }
       &.invalid {
         border-color: rgb(255, 59, 47);
+      }
+
+      &.valid {
+        border-color: rgb(76, 217, 100);
       }
     }
 

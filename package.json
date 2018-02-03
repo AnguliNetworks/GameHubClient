@@ -3,6 +3,7 @@
   "private": "true",
   "version": "0.0.1",
   "dependencies": {
+    "fetch": "^1.1.0",
     "prop-types": "^15.6.0",
     "react": "^16.2.0",
     "react-cookie": "^2.1.2",

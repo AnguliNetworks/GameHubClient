@@ -4,9 +4,9 @@ class Form extends React.Component {
 
     render() {
         return (
-            <div className={'form'}>
+            <form className={'form'} method={'POST'} action={''}>
                 {this.props.children}
-            </div>
+            </form>
         );
     }
 }

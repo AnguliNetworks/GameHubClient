@@ -5,7 +5,7 @@ import Message from '../../../general/Message';
 import Form from '../../../general/form/Form';
 import Input from '../../../general/form/Input';
 import Button from '../../../general/form/Button';
-import Link from "../../../general/Link";
+import Link from '../../../general/Link';
 
 class LoginForm extends React.Component {
     render() {
@@ -19,11 +19,10 @@ class LoginForm extends React.Component {
                         Wenn Du Dich anmeldest, werden Deine Anmeldedaten lokal gespeichert, sodass Du Dich nicht erneut
                         anmelden musst.
                     </Message>
-                    <Message type={'error'} hidden={true} id={"login-error"}/>
                     <Form>
                         <Input type={'text'} id={'login-user'}>Mail Adresse oder Benutzername</Input>
                         <Input type={'password'} id={'login-password'}>Passwort</Input>
-                        <Button id={'login-button'}>Anmelden</Button>
+                        <Button id={'login-button'} type={'submit'}>Anmelden</Button>
                     </Form>
                 </Panel>
                 <Panel>
