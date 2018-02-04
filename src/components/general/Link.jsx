@@ -15,7 +15,6 @@ class Link extends React.Component {
 
         if (this.props.modal) {
             this.props.modal.showModal();
-            return;
         }
 
         if (this.props.onclick) {
