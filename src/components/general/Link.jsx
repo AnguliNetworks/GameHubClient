@@ -13,6 +13,11 @@ class Link extends React.Component {
             event.preventDefault();
         }
 
+        if (this.props.modal) {
+            this.props.modal.showModal();
+            return;
+        }
+
         if (this.props.onclick) {
             this.props.onclick(event);
         }
@@ -21,7 +26,7 @@ class Link extends React.Component {
     render() {
         return (
             <a href={this.props.link ? this.props.link : "/"} onClick={this.handleClick}
-               className={this.props.color}>
+               className={this.props.color + (this.props.className ? ' ' + this.props.className : '')}>
                 {this.props.children}
             </a>
         );

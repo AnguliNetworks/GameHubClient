@@ -18,28 +18,6 @@ div.panel {
   border: 1px solid #e6e6e6;
   padding: 10px 30px;
   margin-bottom: 20px; }
-  div.panel h1.title {
-    color: #000;
-    font-weight: 400; }
-  div.panel p.info {
-    margin: 10px 0 10px; }
-    div.panel p.info a {
-      font-weight: 600;
-      text-decoration: none; }
-      div.panel p.info a.black {
-        color: #606061; }
-        div.panel p.info a.black:hover {
-          color: #2e2e2f; }
-      div.panel p.info a.blue {
-        color: #007AFF;
-        font-weight: 400; }
-        div.panel p.info a.blue:hover {
-          color: #0068cd; }
-  div.panel p.error {
-    text-align: left;
-    color: #ff3b2f;
-    margin-top: 55px;
-    margin-bottom: -25px; }
   div.panel form.form {
     padding: 30px 0; }
     div.panel form.form label {
@@ -89,6 +67,119 @@ div.panel {
       padding: 10px;
       font-weight: 300;
       font-size: 0.9em; }
+
+h1.title {
+  color: #000;
+  font-weight: 400; }
+
+p.info {
+  margin: 10px 0 10px; }
+  p.info a {
+    font-weight: 600;
+    text-decoration: none; }
+    p.info a.black {
+      color: #606061; }
+      p.info a.black:hover {
+        color: #2e2e2f; }
+    p.info a.blue {
+      color: #007AFF;
+      font-weight: 400; }
+      p.info a.blue:hover {
+        color: #0068cd; }
+
+p.error {
+  text-align: left;
+  color: #ff3b2f;
+  margin-top: 55px;
+  margin-bottom: -25px; }
+
+div.modal {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  min-height: calc(100% - 80px);
+  background-color: rgba(30, 30, 30, 0.4);
+  padding-top: 40px;
+  padding-bottom: 40px;
+  -webkit-transition: background-color 0.5s cubic-bezier(0.28, 0.11, 0.32, 1);
+  -moz-transition: background-color 0.5s cubic-bezier(0.28, 0.11, 0.32, 1);
+  -o-transition: background-color 0.5s cubic-bezier(0.28, 0.11, 0.32, 1);
+  transition: background-color 0.5s cubic-bezier(0.28, 0.11, 0.32, 1); }
+  div.modal.hidden {
+    background-color: transparent; }
+    div.modal.hidden div.body {
+      -webkit-transform: translateY(25px);
+      -moz-transform: translateY(25px);
+      -ms-transform: translateY(25px);
+      -o-transform: translateY(25px);
+      transform: translateY(25px);
+      opacity: 0; }
+  div.modal div.body {
+    max-width: 880px;
+    margin: 0 auto;
+    -webkit-box-shadow: 0 1em 3em -0.25em rgba(46, 46, 46, 0.61);
+    -moz-box-shadow: 0 1em 3em -0.25em rgba(46, 46, 46, 0.61);
+    box-shadow: 0 1em 3em -0.25em rgba(46, 46, 46, 0.61);
+    -webkit-transition: -webkit-transform 0.5s cubic-bezier(0.28, 0.11, 0.32, 1), opacity 0.5s cubic-bezier(0.28, 0.11, 0.32, 1);
+    -moz-transition: -moz-transform 0.5s cubic-bezier(0.28, 0.11, 0.32, 1), opacity 0.5s cubic-bezier(0.28, 0.11, 0.32, 1);
+    -o-transition: -o-transform 0.5s cubic-bezier(0.28, 0.11, 0.32, 1), opacity 0.5s cubic-bezier(0.28, 0.11, 0.32, 1);
+    transition: transform 0.5s cubic-bezier(0.28, 0.11, 0.32, 1), opacity 0.5s cubic-bezier(0.28, 0.11, 0.32, 1);
+    -webkit-transform: translateY(0);
+    -moz-transform: translateY(0);
+    -ms-transform: translateY(0);
+    -o-transform: translateY(0);
+    transform: translateY(0);
+    opacity: 1;
+    background-color: #fff; }
+    @media only screen and (max-width: 1068px) {
+      div.modal div.body {
+        max-width: 598px; } }
+    @media only screen and (max-width: 725px) {
+      div.modal div.body {
+        width: 90%; } }
+    div.modal div.body header {
+      width: 100%;
+      background-color: #007aff;
+      padding: 5px 0;
+      border-bottom: 1px solid #e6e6e6; }
+      div.modal div.body header span.title {
+        font-weight: 600;
+        padding-left: 15px;
+        font-size: 18px;
+        color: #fff; }
+      div.modal div.body header a.cross {
+        display: inline-block;
+        color: #fff;
+        text-decoration: none;
+        font-size: 0;
+        float: right;
+        margin-right: 15px;
+        height: 18px;
+        width: 18px;
+        padding-top: 10px; }
+        div.modal div.body header a.cross span {
+          display: block;
+          height: 2px;
+          width: 18px;
+          background-color: #fff; }
+          div.modal div.body header a.cross span.cross-one {
+            -webkit-transform: rotate(45deg);
+            -moz-transform: rotate(45deg);
+            -ms-transform: rotate(45deg);
+            -o-transform: rotate(45deg);
+            transform: rotate(45deg); }
+          div.modal div.body header a.cross span.cross-two {
+            margin-top: -2px;
+            -webkit-transform: rotate(-45deg);
+            -moz-transform: rotate(-45deg);
+            -ms-transform: rotate(-45deg);
+            -o-transform: rotate(-45deg);
+            transform: rotate(-45deg); }
+        div.modal div.body header a.cross:hover span {
+          background-color: #d5d5d5; }
+    div.modal div.body div.content {
+      padding: 25px 1%; }
 
 .hidden, .hidden * {
   border: 0 !important;
