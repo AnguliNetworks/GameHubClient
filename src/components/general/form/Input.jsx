@@ -17,6 +17,10 @@ class Input extends React.Component {
         const value = event.target.value;
         this.setState({value: value});
 
+        if (this.props.onchange) {
+            this.props.onchange(this, value);
+        }
+
         if(this.props.validation === undefined) {
             return
         }
