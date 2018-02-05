@@ -51,22 +51,27 @@ class RegistrationForm extends React.Component {
     }
 
     register() {
+
         // TODO CHANGE URL
-        fetch('https://httpbin.org/post', {
+        fetch('http://localhost:8080/register', {
             method: 'POST',
             headers: {
                 'Accept': 'application/json',
-                'Content-Type': 'application/json',
+                'Content-Type': 'application/x-www-form-urlencoded',
             },
-            body: JSON.stringify({
-                mail: this.formData.get('registration-mail').value,
-                username: this.formData.get('registration-username').value,
-                password: this.formData.get('registration-password').value
-            })
+            body: 'mail=' + encodeURIComponent(this.formData.get('registration-mail').value) +
+            '&username=' + encodeURIComponent(this.formData.get('registration-username').value) +
+            '&password=' + encodeURIComponent(this.formData.get('registration-password').value)
         })
             .then((body) => body.json())
             // TODO ADD CALLBACK HANDLE
-            .then((json) => console.log(json));
+            .then((json) => {
+                console.log(json);
+                this.setState({
+                    responseText:
+                        <Message type={json.status === 'CREATED' ? 'success' : 'error'}>{json.message}</Message>
+                });
+            });
     }
 
     bindSitePolicyModal(modal) {
@@ -78,7 +83,6 @@ class RegistrationForm extends React.Component {
     }
 
     render() {
-
         // TODO ADD LEGAL STUFF
         return (
             <div>
@@ -244,6 +248,7 @@ class RegistrationForm extends React.Component {
                         Lorem ipsum dolor sit amet, consetetur sadipscing elitr, sed diam nonumy eirmod tempor invidunt
                         ut labore et dolore magna aliquyam erat, sed diam voluptua.
                     </Message>
+                    {this.state.responseText}
                     <Form>
                         <Input
                             type={'text'}

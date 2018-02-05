@@ -35,7 +35,7 @@ class Input extends React.Component {
                 validation = /^[a-zA-Z0-9_.-]{3,}$/.test(value);
                 break;
             case 'password':
-                validation = /^(?=.*[A-Za-z])(?=.*\d)[A-Za-z\d!-}ä-üÄ-Üß]{8,}$/.test(value);
+                validation = /^(?=.*[A-Z])(?=.*[a-z])(?=.*\d)[A-Za-z\d!-}ä-üÄ-Üß §]{8,}$/.test(value);
                 break;
             default:
         }

@@ -161,37 +161,44 @@ h1.title {
   font-weight: 400;
 }
 
-p.info {
-  margin: 10px 0 10px;
+p {
+  text-align: left;
+  margin-top: 55px;
+  margin-bottom: -25px;
 
-  a {
-    font-weight: 600;
-    text-decoration: none;
+  &.error {
+    color: rgb(255, 59, 47);
+  }
 
-    &.black {
-      color: #606061;
+  &.success {
+    color: rgb(76, 217, 100);
+  }
 
-      &:hover {
-        color: #2e2e2f;
+  &.info {
+    margin: 10px 0 10px;
+
+    a {
+      font-weight: 600;
+      text-decoration: none;
+
+      &.black {
+        color: #606061;
+
+        &:hover {
+          color: #2e2e2f;
+        }
       }
-    }
 
-    &.blue {
-      color: #007AFF;
-      font-weight: 400;
+      &.blue {
+        color: #007AFF;
+        font-weight: 400;
 
-      &:hover {
-        color: #0068cd;
+        &:hover {
+          color: #0068cd;
+        }
       }
     }
   }
-}
-
-p.error {
-  text-align: left;
-  color: rgb(255, 59, 47);
-  margin-top: 55px;
-  margin-bottom: -25px;
 }
 
 div.modal {

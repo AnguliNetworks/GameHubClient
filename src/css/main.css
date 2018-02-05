@@ -72,26 +72,28 @@ h1.title {
   color: #000;
   font-weight: 400; }
 
-p.info {
-  margin: 10px 0 10px; }
-  p.info a {
-    font-weight: 600;
-    text-decoration: none; }
-    p.info a.black {
-      color: #606061; }
-      p.info a.black:hover {
-        color: #2e2e2f; }
-    p.info a.blue {
-      color: #007AFF;
-      font-weight: 400; }
-      p.info a.blue:hover {
-        color: #0068cd; }
-
-p.error {
+p {
   text-align: left;
-  color: #ff3b2f;
   margin-top: 55px;
   margin-bottom: -25px; }
+  p.error {
+    color: #ff3b2f; }
+  p.success {
+    color: #4cd964; }
+  p.info {
+    margin: 10px 0 10px; }
+    p.info a {
+      font-weight: 600;
+      text-decoration: none; }
+      p.info a.black {
+        color: #606061; }
+        p.info a.black:hover {
+          color: #2e2e2f; }
+      p.info a.blue {
+        color: #007AFF;
+        font-weight: 400; }
+        p.info a.blue:hover {
+          color: #0068cd; }
 
 div.modal {
   position: absolute;
