@@ -1,4 +1,5 @@
 import React from 'react';
+import Cookies from 'universal-cookie';
 
 import Panel from '../../../general/Panel';
 import Message from '../../../general/Message';
@@ -12,7 +13,12 @@ class LoginForm extends React.Component {
     constructor(props) {
         super(props);
 
+        this.state = {
+            responseText: <Message/>
+        };
+
         this.formData = new Map();
+        this.cookies = new Cookies();
 
         this.login = this.login.bind(this);
         this.setData = this.setData.bind(this);
@@ -23,21 +29,28 @@ class LoginForm extends React.Component {
     }
 
     login() {
+        const user = this.formData.get('login-user');
         // TODO CHANGE URL
-        fetch('https://httpbin.org/post', {
+        fetch('http://localhost:8080/login', {
             method: 'POST',
             headers: {
                 'Accept': 'application/json',
-                'Content-Type': 'application/json',
+                'Content-Type': 'application/x-www-form-urlencoded',
             },
-            body: JSON.stringify({
-                user: this.formData.get('login-user'),
-                password: this.formData.get('login-password')
-            })
+            body: (user.indexOf("@") > -1 ? 'mail' : 'username') + '=' +
+            encodeURIComponent(this.formData.get('login-user')) +
+            '&password=' + encodeURIComponent(this.formData.get('login-password'))
         })
             .then((body) => body.json())
-            // TODO ADD CALLBACK HANDLE
-            .then((json) => console.log(json));
+            .then((json) => {
+                if (json.status !== 'ACCEPTED') {
+                    this.setState({
+                        responseText: <Message type={'error'}>{json.message}</Message>
+                    });
+                    return;
+                }
+                this.props.login(json.object);
+            });
     }
 
     render() {
@@ -48,9 +61,10 @@ class LoginForm extends React.Component {
                         Login
                     </h1>
                     <Message type={'info'}>
-                        Wenn Du Dich anmeldest, werden Deine Anmeldedaten lokal gespeichert, sodass Du Dich nicht erneut
-                        anmelden musst.
+                        Einmal anmelden und wir erinnern uns an Dich. Funktioniert nur in 99% der Fällen also ab und zu
+                        werden wir uns hier wieder sehen :)
                     </Message>
+                    {this.state.responseText}
                     <Form>
                         <Input
                             type={'text'}

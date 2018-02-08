@@ -1,3 +1,15 @@
+@keyframes loading {
+  0%, 100% {
+    transform: scale(0);
+    -webkit-transform: scale(0); }
+  50% {
+    transform: scale(1);
+    -webkit-transform: scale(1); } }
+@-webkit-keyframes loading {
+  0%, 100% {
+    -webkit-transform: scale(0); }
+  50% {
+    -webkit-transform: scale(1); } }
 body {
   font-family: "Helvetica Neue", Helvetica, Arial, sans-serif;
   background-color: #ddd;
@@ -10,6 +22,42 @@ body {
   @media only screen and (max-width: 725px) {
     body {
       width: 95%; } }
+
+div.loading {
+  position: absolute;
+  top: 0;
+  left: 0;
+  padding-top: 70px;
+  width: 100%;
+  height: calc(100% - 70px);
+  background-image: linear-gradient(to bottom, #00c6fb 0%, #005bea 100%);
+  text-align: center;
+  color: #fff;
+  font-weight: 300; }
+  div.loading .spinner {
+    width: 70px;
+    height: 70px;
+    position: relative;
+    margin: 100px auto; }
+    div.loading .spinner .bounce {
+      width: 100%;
+      height: 100%;
+      border-radius: 50%;
+      background-color: #fff;
+      opacity: 0.6;
+      position: absolute;
+      top: 0;
+      left: 0;
+      -webkit-animation: loading 2s infinite ease-in-out;
+      -o-animation: loading 2s infinite ease-in-out;
+      animation: loading 2s infinite ease-in-out; }
+      div.loading .spinner .bounce.double-bounce2 {
+        -webkit-animation-delay: -1s;
+        -moz-animation-delay: -1s;
+        -o-animation-delay: -1s;
+        animation-delay: -1s; }
+  div.loading h1 {
+    font-size: 36px; }
 
 div.panel {
   background-color: #fff;

@@ -1,13 +1,10 @@
 import React from 'react';
-import {Cookies, withCookies} from 'react-cookie';
-import {instanceOf} from 'prop-types';
+import Cookies from 'universal-cookie';
+
 import RegistrationForm from "./forms/RegistrationForm";
 import LoginForm from "./forms/LoginForm";
 
 class Login extends React.Component {
-    static propTypes = {
-        cookies: instanceOf(Cookies).isRequired
-    };
 
     constructor(props) {
         super(props);
@@ -16,15 +13,17 @@ class Login extends React.Component {
             currentForm: 'registration'
         };
 
+        this.cookies = new Cookies();
+
         this.switchForm = this.switchForm.bind(this);
+        this.login = this.login.bind(this);
     }
 
-    componentWillMount() {
-        const {cookies} = this.props;
-
-        this.setState({
-            loggedIn: cookies.get('SESSION')
-        });
+    login(user) {
+        console.log(user);
+        this.cookies.set('session', user.session, {path: '/'});
+        this.cookies.set('userId', user.id, {path: '/'});
+        this.props.afterLogin();
     }
 
     switchForm() {
@@ -44,7 +43,7 @@ class Login extends React.Component {
                     {
                         this.state.currentForm === "registration" ?
                             <RegistrationForm switch={this.switchForm}/> :
-                            <LoginForm switch={this.switchForm}/>
+                            <LoginForm switch={this.switchForm} login={this.login}/>
                     }
                 </div>
             );
@@ -57,4 +56,4 @@ class Login extends React.Component {
     }
 }
 
-export default withCookies(Login);
+export default Login;

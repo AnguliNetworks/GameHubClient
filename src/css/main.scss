@@ -54,6 +54,19 @@ $color: rgb(0, 122, 255);
   @include transform($transform);
 }
 
+@mixin animation($value...) {
+  -webkit-animation: $value;
+  -o-animation: $value;
+  animation: $value;
+}
+
+@mixin animation-delay($value...) {
+  -webkit-animation-delay: $value;
+  -moz-animation-delay: $value;
+  -o-animation-delay: $value;
+  animation-delay: $value;
+}
+
 @mixin box-shadow($value...) {
   -webkit-box-shadow: $value;
   -moz-box-shadow: $value;
@@ -82,12 +95,74 @@ $color: rgb(0, 122, 255);
   width: 1px !important;
 }
 
+@keyframes loading {
+  0%, 100% {
+    transform: scale(0.0);
+    -webkit-transform: scale(0.0);
+  }
+  50% {
+    transform: scale(1.0);
+    -webkit-transform: scale(1.0);
+  }
+}
+
+@-webkit-keyframes loading {
+  0%, 100% {
+    -webkit-transform: scale(0.0)
+  }
+  50% {
+    -webkit-transform: scale(1.0)
+  }
+}
+
 body {
   font-family: "Helvetica Neue", Helvetica, Arial, sans-serif;
 
   background-color: #ddd;
   @include default-container();
   padding-top: 47px;
+}
+
+div.loading {
+  position: absolute;
+  top: 0;
+  left: 0;
+  padding-top: 70px;
+  width: 100%;
+  height: calc(100% - 70px);
+  background-image: linear-gradient(to bottom, #00c6fb 0%, #005bea 100%);
+  text-align: center;
+  color: #fff;
+  font-weight: 300;
+
+  .spinner {
+    width: 70px;
+    height: 70px;
+
+    position: relative;
+    margin: 100px auto;
+
+    .bounce {
+      width: 100%;
+      height: 100%;
+      border-radius: 50%;
+      background-color: #fff;
+      opacity: 0.6;
+      position: absolute;
+      top: 0;
+      left: 0;
+
+      @include animation(loading 2.0s infinite ease-in-out);
+
+      &.double-bounce2 {
+        @include animation-delay(-1.0s);
+      }
+    }
+  }
+
+  h1 {
+    font-size: 36px;
+  }
 }
 
 div.panel {
