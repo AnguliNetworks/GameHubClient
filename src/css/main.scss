@@ -123,17 +123,25 @@ body {
   padding-top: 47px;
 }
 
-div.loading {
+div.loading-screen {
   position: absolute;
   top: 0;
   left: 0;
   padding-top: 70px;
   width: 100%;
   height: calc(100% - 70px);
-  background-image: linear-gradient(to bottom, #00c6fb 0%, #005bea 100%);
   text-align: center;
   color: #fff;
   font-weight: 300;
+  background-color: #111;
+
+  &.error {
+
+  }
+
+  &.loading {
+    background-image: linear-gradient(to bottom, #00c6fb 0%, #005bea 100%);
+  }
 
   .spinner {
     width: 70px;
@@ -162,6 +170,12 @@ div.loading {
 
   h1 {
     font-size: 36px;
+  }
+
+  span a {
+    font-weight: 400;
+    color: $color;
+    text-decoration: none;
   }
 }
 
