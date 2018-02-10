@@ -11,8 +11,8 @@ class LoadingScreen extends React.Component {
                         navigator.onLine ?
                             <span>
                                 Unsere Server scheinen gerade Offline zu sein :/ Mehr Infos findest Du auf
-                                <a href={'http://twitter.com/GameHubOne'}> Twitter</a> oder auf
-                                <a href={'https://status.gamehub.one'}> unserer Status-Seite</a>.
+                                <a href={'http://twitter.com/GameHubOne'} target={'_blank'}> Twitter</a> oder auf
+                                <a href={'https://status.gamehub.one'} target={'_blank'}> unserer Status-Seite</a>.
                             </span> :
                             <span>
                                 Du bist gerade nicht mit dem Internet verbunden. OfflinePlay wird leider
