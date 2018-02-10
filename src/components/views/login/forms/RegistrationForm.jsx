@@ -52,6 +52,8 @@ class RegistrationForm extends React.Component {
 
     register() {
 
+        this.setState({enableRegistrationButton: false});
+
         // TODO CHANGE URL
         fetch('http://localhost:8080/register', {
             method: 'POST',
@@ -64,7 +66,6 @@ class RegistrationForm extends React.Component {
             '&password=' + encodeURIComponent(this.formData.get('registration-password').value)
         })
             .then((body) => body.json())
-            // TODO ADD CALLBACK HANDLE
             .then((json) => {
                 console.log(json);
                 this.setState({

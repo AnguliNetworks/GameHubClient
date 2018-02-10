@@ -29,6 +29,7 @@ class LoginForm extends React.Component {
     }
 
     login() {
+        this.setState({responseText: <Message/>});
         const user = this.formData.get('login-user');
         // TODO CHANGE URL
         fetch('http://localhost:8080/login', {
