@@ -13,7 +13,7 @@ class Input extends React.Component {
     }
 
     handleChange(event) {
-        
+
         const value = event.target.value;
         this.setState({value: value});
 
@@ -21,7 +21,7 @@ class Input extends React.Component {
             this.props.onchange(this, value);
         }
 
-        if(this.props.validation === undefined) {
+        if (this.props.validation === undefined) {
             return
         }
 
@@ -45,7 +45,7 @@ class Input extends React.Component {
         }
 
         this.setState({valid: validation});
-        this.props.validation.fn(this, validation);
+        this.props.validation.fn(this.props.id, value, validation);
     }
 
     render() {

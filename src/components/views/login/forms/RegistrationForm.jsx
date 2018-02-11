@@ -25,19 +25,20 @@ class RegistrationForm extends React.Component {
         this.bindPrivacyModal = this.bindPrivacyModal.bind(this);
     }
 
-    setValidationFor(component, value) {
-        this.formData.set(component.props.id, {
-            value: component.state.value,
-            valid: value
+    setValidationFor(id, value, valid) {
+        this.formData.set(id, {
+            value: value,
+            valid: valid
         });
+        console.log(value);
 
         let allValid = true;
 
-        if (!value || this.formData.size < 3) {
+        if (!valid || this.formData.size < 3) {
             allValid = false;
         } else {
             this.formData.forEach((value, key) => {
-                if (key === component.props.id) {
+                if (key === id) {
                     return;
                 }
 
@@ -51,6 +52,7 @@ class RegistrationForm extends React.Component {
     }
 
     register() {
+        console.log(this.formData.get('registration-password').value);
 
         this.setState({enableRegistrationButton: false});
 
