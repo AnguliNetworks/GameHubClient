@@ -4,13 +4,16 @@ import './css/main.css';
 
 import Login from './components/views/login/View';
 import LoadingScreen from "./components/views/LoadingScreen";
+import Launcher from "./components/views/launcher/View";
 
 class App extends Component {
 
     constructor(props) {
         super(props);
 
-        this.state = {};
+        this.state = {
+            loading: true
+        };
 
         this.cookies = new Cookies();
 
@@ -46,36 +49,34 @@ class App extends Component {
                             .then((json) => {
                                 this.setState({loggedIn: json.status === 'ACCEPTED'});
                                 if (json.status !== 'ACCEPTED') {
+                                    this.setState({loading: false});
                                     return;
                                 }
 
-                                this.setState({loading: true});
-
-                                // TODO FURTHER UI LOADING
+                                this.setState({loading: false, loggedIn: true});
                             });
                     } else {
-                        this.setState({loggedIn: false});
+                        this.setState({loading: false, loggedIn: false});
                     }
                 } else {
-                    this.setState({offline: true});
+                    this.setState({loading: false});
                 }
             })
             .catch(() => {
-                this.setState({offline: true});
+                this.setState({loading: false, offline: true});
             });
     }
 
     render() {
-        if (this.state.loggedIn === undefined || this.state.loading) {
+        if (this.state.loading) {
             return (
                 <LoadingScreen offline={this.state.offline}/>
             );
         }
-        let login = this.state.loggedIn ? <div/> : <Login afterLogin={this.loadUI}/>;
 
         return (
             <div>
-                {login}
+                {this.state.loggedIn ? <Launcher/> : <Login afterLogin={this.loadUI}/>}
             </div>
         );
     }

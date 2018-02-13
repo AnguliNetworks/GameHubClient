@@ -12,15 +12,17 @@
     -webkit-transform: scale(1); } }
 body {
   font-family: "Helvetica Neue", Helvetica, Arial, sans-serif;
-  background-color: #ddd;
+  background-color: #ddd; }
+
+div.container {
   max-width: 980px;
   margin: 0 auto;
   padding-top: 47px; }
   @media only screen and (max-width: 1068px) {
-    body {
+    div.container {
       max-width: 698px; } }
   @media only screen and (max-width: 725px) {
-    body {
+    div.container {
       width: 95%; } }
 
 div.loading-screen {
@@ -65,6 +67,132 @@ div.loading-screen {
     color: #007aff;
     text-decoration: none; }
 
+div.launcher figure, div.launcher ul, div.launcher h1, div.launcher h2, div.launcher h3, div.launcher h4, div.launcher h5, div.launcher h6 {
+  -webkit-margin-before: 0;
+  -webkit-margin-after: 0;
+  -webkit-margin-start: 0;
+  -webkit-margin-end: 0;
+  margin: 0;
+  -webkit-padding-start: 0; }
+div.launcher div.container {
+  max-width: 980px;
+  margin: 0 auto; }
+  @media only screen and (max-width: 1068px) {
+    div.launcher div.container {
+      max-width: 698px; } }
+  @media only screen and (max-width: 725px) {
+    div.launcher div.container {
+      width: 95%; } }
+  @media only screen and (min-width: 1442px) {
+    div.launcher div.container {
+      max-width: 1400px; } }
+div.launcher div.column {
+  vertical-align: top;
+  display: inline-block; }
+  div.launcher div.column.small {
+    width: 25%; }
+  div.launcher div.column.large {
+    width: calc(75% - 20px);
+    margin-left: 20px; }
+    @media only screen and (max-width: 725px) {
+      div.launcher div.column.large {
+        width: 100%;
+        margin-right: 0; } }
+div.launcher div.panel {
+  text-align: left;
+  padding: 10px; }
+  div.launcher div.panel h1.title {
+    font-weight: 600; }
+  div.launcher div.panel div.friend-list {
+    margin-top: 15px; }
+div.launcher div.avatar-container {
+  margin-right: 5px;
+  display: inline-block;
+  width: 64px;
+  height: 64px;
+  border: #E6E6E6 2px solid;
+  border-radius: 50%; }
+  div.launcher div.avatar-container.ingame {
+    border-color: #007aff; }
+  div.launcher div.avatar-container.online {
+    border-color: #4cd964; }
+  div.launcher div.avatar-container.busy {
+    border-color: #ff3b30; }
+  div.launcher div.avatar-container.afk {
+    border-color: #ffcc00; }
+  div.launcher div.avatar-container figure.avatar {
+    border-radius: 50%;
+    margin-left: 3px;
+    margin-top: 3px;
+    width: 58px;
+    height: 58px;
+    background-size: 58px 58px; }
+div.launcher div.user div.info, div.launcher div.game div.info {
+  display: inline-block;
+  padding-left: 2px;
+  vertical-align: 75%; }
+  div.launcher div.user div.info span, div.launcher div.game div.info span {
+    display: block; }
+    div.launcher div.user div.info span.name, div.launcher div.game div.info span.name {
+      font-weight: 600;
+      color: #111;
+      font-size: 28px; }
+    div.launcher div.user div.info span.status, div.launcher div.game div.info span.status {
+      margin-top: -7px;
+      font-weight: 500;
+      color: #606060; }
+div.launcher ul.inline-menu {
+  margin-top: 10px;
+  list-style: none; }
+  div.launcher ul.inline-menu li.entry {
+    display: inline-block;
+    padding: 0 5px;
+    border-right: #95989A 2px solid; }
+    div.launcher ul.inline-menu li.entry:first-child {
+      padding-left: 0; }
+    div.launcher ul.inline-menu li.entry:last-child {
+      padding-right: 0;
+      border-right: none; }
+    div.launcher ul.inline-menu li.entry a {
+      color: #95989A;
+      text-decoration: none; }
+div.launcher .avatar-container {
+  display: inline-block;
+  width: 15%; }
+div.launcher div.game-list {
+  margin-top: 25px; }
+  div.launcher div.game-list div.game {
+    border-top: #E6E6E6 2px solid;
+    padding-top: 15px;
+    margin-top: 15px; }
+    div.launcher div.game-list div.game:first-child {
+      border-top: none;
+      margin-top: 0; }
+    div.launcher div.game-list div.game div.button {
+      float: right;
+      display: inline-block; }
+
+div.button input {
+  margin-top: 10px;
+  display: block;
+  padding: 9px 15px 7px;
+  outline: none;
+  border-radius: 3px;
+  -webkit-transition: border-color 0.5s cubic-bezier(0.28, 0.11, 0.32, 1), color 0.5s cubic-bezier(0.28, 0.11, 0.32, 1), background-color 0.5s cubic-bezier(0.28, 0.11, 0.32, 1);
+  -moz-transition: border-color 0.5s cubic-bezier(0.28, 0.11, 0.32, 1), color 0.5s cubic-bezier(0.28, 0.11, 0.32, 1), background-color 0.5s cubic-bezier(0.28, 0.11, 0.32, 1);
+  -o-transition: border-color 0.5s cubic-bezier(0.28, 0.11, 0.32, 1), color 0.5s cubic-bezier(0.28, 0.11, 0.32, 1), background-color 0.5s cubic-bezier(0.28, 0.11, 0.32, 1);
+  transition: border-color 0.5s cubic-bezier(0.28, 0.11, 0.32, 1), color 0.5s cubic-bezier(0.28, 0.11, 0.32, 1), background-color 0.5s cubic-bezier(0.28, 0.11, 0.32, 1);
+  font-size: 16px;
+  background-color: #007AFF;
+  border: none !important;
+  color: #fff !important;
+  cursor: pointer; }
+  div.button input:hover {
+    background-color: #0068cd; }
+  div.button input:disabled {
+    background-color: #888;
+    cursor: not-allowed; }
+
 div.panel {
   background-color: #fff;
   text-align: center;
@@ -72,6 +200,9 @@ div.panel {
   border: 1px solid #e6e6e6;
   padding: 10px 30px;
   margin-bottom: 20px; }
+  div.panel.transparent {
+    background-color: transparent;
+    border: none; }
   div.panel form.form {
     padding: 30px 0; }
     div.panel form.form label {
@@ -102,17 +233,6 @@ div.panel {
       div.panel form.form input:focus {
         border-color: #000;
         color: #000; }
-      div.panel form.form input[type="button"], div.panel form.form input[type="submit"] {
-        font-size: 16px;
-        background-color: #007AFF;
-        border: none !important;
-        color: #fff !important;
-        cursor: pointer; }
-        div.panel form.form input[type="button"]:hover, div.panel form.form input[type="submit"]:hover {
-          background-color: #0068cd; }
-        div.panel form.form input[type="button"]:disabled, div.panel form.form input[type="submit"]:disabled {
-          background-color: #888;
-          cursor: not-allowed; }
       div.panel form.form input.invalid {
         border-color: #ff3b2f; }
       div.panel form.form input.valid {

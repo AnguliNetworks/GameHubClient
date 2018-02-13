@@ -33,9 +33,18 @@ class Button extends React.Component {
             attributes.type = this.props.type;
         }
 
+        if (this.props.className) {
+            attributes.className = this.props.className;
+        }
+
         return (
-            <div>
-                <label htmlFor={this.props.id}>{this.props.children}</label>
+            <div className={'button'}>
+                <label
+                    htmlFor={this.props.id}
+                    className={this.props.hidden ? 'hidden' : ''}
+                >
+                    {this.props.children}
+                </label>
                 <input {...attributes} />
             </div>
         );

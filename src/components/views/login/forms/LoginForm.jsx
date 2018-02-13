@@ -56,7 +56,7 @@ class LoginForm extends React.Component {
 
     render() {
         return (
-            <div>
+            <div className={'container'}>
                 <Panel>
                     <h1 className={'title'}>
                         Login

@@ -39,7 +39,7 @@ class Login extends React.Component {
 
         if (!this.state.loggedIn) {
             login = (
-                <div className={'login'}>
+                <div className={'login container'}>
                     {
                         this.state.currentForm === "registration" ?
                             <RegistrationForm switch={this.switchForm}/> :
