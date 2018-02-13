@@ -6,6 +6,7 @@ class GameOverview extends React.Component {
 
     render() {
         return (
+            // TODO ADD EXPAND AND START FUNCTION
             <div className={'game'}>
                 <Avatar src={this.props.icon}/>
                 <div className={'info'}>

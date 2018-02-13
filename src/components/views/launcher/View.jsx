@@ -9,6 +9,7 @@ import GameOverview from "./game/Overview";
 class Launcher extends React.Component {
 
     render() {
+        // TODO ADD API DATA
         return (
             <div className={'launcher'}>
                 <div className={'container'}>

@@ -74,18 +74,9 @@ div.launcher figure, div.launcher ul, div.launcher h1, div.launcher h2, div.laun
   -webkit-margin-end: 0;
   margin: 0;
   -webkit-padding-start: 0; }
-div.launcher div.container {
-  max-width: 980px;
-  margin: 0 auto; }
-  @media only screen and (max-width: 1068px) {
-    div.launcher div.container {
-      max-width: 698px; } }
-  @media only screen and (max-width: 725px) {
-    div.launcher div.container {
-      width: 95%; } }
-  @media only screen and (min-width: 1442px) {
-    div.launcher div.container {
-      max-width: 1400px; } }
+@media only screen and (min-width: 1442px) {
+  div.launcher div.container {
+    max-width: 1400px; } }
 div.launcher div.column {
   vertical-align: top;
   display: inline-block; }

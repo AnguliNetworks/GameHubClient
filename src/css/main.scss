@@ -193,10 +193,6 @@ div.launcher {
   }
 
   div.container {
-
-    // TODO REMOVE LINE
-    @include container(980px, 698px, 95%);
-
     @media #{$large-device} {
       max-width: 1400px;
     }

@@ -24,6 +24,7 @@ class UserInfo extends React.Component {
         }
 
         return (
+            // TODO ADD CLICK HANDLER
             <div className={'user'}>
                 <Avatar status={status} src={this.props.avatar}/>
                 <div className={'info'}>
