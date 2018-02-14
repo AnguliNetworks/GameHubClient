@@ -94,6 +94,8 @@ div.launcher div.panel {
   padding: 10px; }
   div.launcher div.panel h1.title {
     font-weight: 600; }
+  div.launcher div.panel#games h1.title {
+    font-size: 42px; }
   div.launcher div.panel div.friend-list {
     margin-top: 15px; }
 div.launcher div.avatar-container {
