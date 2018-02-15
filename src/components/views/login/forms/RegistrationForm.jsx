@@ -61,7 +61,7 @@ class RegistrationForm extends React.Component {
             method: 'POST',
             headers: {
                 'Accept': 'application/json',
-                'Content-Type': 'application/x-www-form-urlencoded',
+                'Content-Type': 'application/x-www-form-urlencoded'
             },
             body: 'mail=' + encodeURIComponent(this.formData.get('registration-mail').value) +
             '&username=' + encodeURIComponent(this.formData.get('registration-username').value) +
@@ -169,10 +169,21 @@ class RegistrationForm extends React.Component {
                             Passwort
                         </Input>
                         <Message type={'info'}>
-                            Durch Deine Registrierung stimmst Du unseren
-                            <Link modal={this.state.sitePolicy}
-                                  color={'black'}> Nutzungsbedingungen</Link> und
-                            <Link modal={this.state.privacy} color={'black'}> Datenschutz</Link> zu.
+                            Durch Deine Registrierung stimmst Du unseren{' '}
+                            <Link
+                                modal={this.state.sitePolicy}
+                                color={'black'}
+                            >
+                                Nutzungsbedingungen{' '}
+                            </Link>
+                            und{' '}
+                            <Link
+                                modal={this.state.privacy}
+                                color={'black'}
+                            >
+                                Datenschutz{' '}
+                            </Link>
+                            zu.
                         </Message>
                         <Button
                             id={'registration-button'}

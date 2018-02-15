@@ -11,7 +11,7 @@
     ],
     "react/jsx-indent-props": [
       "error",
-      4
+      2
     ],
     "comma-dangle": [
       "error",

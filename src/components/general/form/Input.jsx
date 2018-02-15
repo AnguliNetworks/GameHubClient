@@ -46,7 +46,6 @@ class Input extends React.Component {
 
         this.setState({ valid: validation });
         this.props.validation.fn(this.props.id, value, validation);
-
     }
 
     render() {

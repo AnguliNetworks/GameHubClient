@@ -1,5 +1,6 @@
 import React from 'react';
 import Cookies from 'universal-cookie';
+import PropTypes from 'prop-types';
 
 import Panel from '../../../general/Panel';
 import Message from '../../../general/Message';
@@ -36,11 +37,12 @@ class LoginForm extends React.Component {
             method: 'POST',
             headers: {
                 'Accept': 'application/json',
-                'Content-Type': 'application/x-www-form-urlencoded',
+                'Content-Type': 'application/x-www-form-urlencoded'
             },
-            body: (user.indexOf('@') > -1 ? 'mail' : 'username') + '=' +
-            encodeURIComponent(this.formData.get('login-user')) +
-            '&password=' + encodeURIComponent(this.formData.get('login-password'))
+            body:
+                `${(user.indexOf('@') > -1 ? 'mail' : 'username')}=
+                ${encodeURIComponent(this.formData.get('login-user'))}&password=
+                ${encodeURIComponent(this.formData.get('login-password'))}`
         })
             .then((body) => body.json())
             .then((json) => {
@@ -74,10 +76,20 @@ class LoginForm extends React.Component {
                         >
                             Mail Adresse oder Benutzername
                         </Input>
-                        <Input type={'password'} id={'login-password'}
-                               onchange={this.setData}>Passwort</Input>
-                        <Button id={'login-button'} type={'submit'}
-                                onclick={this.login}>Anmelden</Button>
+                        <Input
+                            type={'password'}
+                            id={'login-password'}
+                            onchange={this.setData}
+                        >
+                            Passwort
+                        </Input>
+                        <Button
+                            id={'login-button'}
+                            type={'submit'}
+                            onclick={this.login}
+                        >
+                            Anmelden
+                        </Button>
                     </Form>
                 </Panel>
                 <Panel>
@@ -92,7 +104,7 @@ class LoginForm extends React.Component {
 }
 
 LoginForm.propTypes = {
-    switch: PropTypes.func
+    switch: PropTypes.func.isRequired
 };
 
 export default LoginForm;
