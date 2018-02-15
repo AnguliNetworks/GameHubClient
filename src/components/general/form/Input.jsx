@@ -21,16 +21,20 @@ class Input extends React.Component {
         this.setState({ value: value });
 
         if (this.props.onchange) {
+
             this.props.onchange(this, value);
+
         }
 
         if (this.props.validation === undefined) {
+
             return;
         }
 
         let validation = false;
 
         switch (this.props.validation.type) {
+
             case 'mail':
                 validation = /^[_A-Za-z0-9]+(\.[_A-Za-z0-9-]+)*@[A-Za-z0-9-]+(\.[A-Za-z0-9]+)*(\.[A-Za-z]{2,})$/.test(value);
                 break;
@@ -44,6 +48,7 @@ class Input extends React.Component {
         }
 
         if (value === '') {
+            
             validation = undefined;
         }
 
@@ -81,6 +86,11 @@ Input.propTypes = {
     },
     children: PropTypes.element.isRequired,
     type: PropTypes.string.isRequired
+};
+
+Input.defaultProps = {
+    onchange: undefined,
+    validation: undefined
 };
 
 export default Input;
