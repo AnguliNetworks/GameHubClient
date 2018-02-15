@@ -29,7 +29,7 @@ class App extends Component {
             method: 'GET',
             headers: {
                 'Accept': 'application/json',
-                'Content-Type': 'application/x-www-form-urlencoded',
+                'Content-Type': 'application/x-www-form-urlencoded'
             }
         })
             .then(body => body.json())
@@ -41,7 +41,7 @@ class App extends Component {
                             method: 'POST',
                             headers: {
                                 'Accept': 'application/json',
-                                'Content-Type': 'application/x-www-form-urlencoded',
+                                'Content-Type': 'application/x-www-form-urlencoded'
                             },
                             body: 'userId=' + this.cookies.get('userId') + '&session=' + this.cookies.get('session')
                         })
