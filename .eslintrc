@@ -3,7 +3,10 @@
   "rules": {
     "indent": [
       "error",
-      4
+      4,
+      {
+        "SwitchCase": 4
+      }
     ],
     "react/jsx-indent": [
       "error",
@@ -16,6 +19,10 @@
     "comma-dangle": [
       "error",
       "never"
+    ],
+    "padded-blocks": [
+      "error",
+      "always"
     ]
   }
 }

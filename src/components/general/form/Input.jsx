@@ -1,8 +1,10 @@
 import React from 'react';
+import PropTypes from 'prop-types';
 
 class Input extends React.Component {
 
     constructor(props) {
+
         super(props);
 
         this.state = {
@@ -10,6 +12,7 @@ class Input extends React.Component {
         };
 
         this.handleChange = this.handleChange.bind(this);
+
     }
 
     handleChange(event) {
@@ -46,9 +49,11 @@ class Input extends React.Component {
 
         this.setState({ valid: validation });
         this.props.validation.fn(this.props.id, value, validation);
+
     }
 
     render() {
+
         return (
             <div>
                 <label htmlFor={this.props.id}>{this.props.children}</label>
@@ -65,6 +70,17 @@ class Input extends React.Component {
             </div>
         );
     }
+
 }
+
+Input.propTypes = {
+    onchange: PropTypes.func,
+    validation: {
+        type: PropTypes.string,
+        fn: PropTypes.func
+    },
+    children: PropTypes.element.isRequired,
+    type: PropTypes.string.isRequired
+};
 
 export default Input;
