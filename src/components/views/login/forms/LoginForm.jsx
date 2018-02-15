@@ -40,9 +40,9 @@ class LoginForm extends React.Component {
                 'Content-Type': 'application/x-www-form-urlencoded'
             },
             body:
-                `${(user.indexOf('@') > -1 ? 'mail' : 'username')}=
-                ${encodeURIComponent(this.formData.get('login-user'))}&password=
-                ${encodeURIComponent(this.formData.get('login-password'))}`
+            `${(user.indexOf('@') > -1 ? 'mail' : 'username')}=` +
+            encodeURIComponent(this.formData.get('login-user')) +
+            `&password=${encodeURIComponent(this.formData.get('login-password'))}`
         })
             .then((body) => body.json())
             .then((json) => {

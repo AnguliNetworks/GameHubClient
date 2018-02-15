@@ -65,12 +65,13 @@ class App extends Component {
                         });
                     }
                 } else {
-                    this.setState({ loading: false });
+                    this.setState({
+                        offline: true
+                    });
                 }
             })
             .catch(() => {
                 this.setState({
-                    loading: false,
                     offline: true
                 });
             });

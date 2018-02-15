@@ -80,11 +80,11 @@ class Input extends React.Component {
 
 Input.propTypes = {
     onchange: PropTypes.func,
-    validation: {
+    validation: PropTypes.shape({
         type: PropTypes.string,
         fn: PropTypes.func
-    },
-    children: PropTypes.element.isRequired,
+    }),
+    children: PropTypes.string.isRequired,
     type: PropTypes.string.isRequired
 };
 
