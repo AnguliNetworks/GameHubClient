@@ -48,7 +48,7 @@ class Input extends React.Component {
         }
 
         if (value === '') {
-            
+
             validation = undefined;
         }
 
