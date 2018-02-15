@@ -10,8 +10,15 @@ class LoadingScreen extends React.Component {
                     {
                         navigator.onLine ?
                             <span>
-                                Unsere Server scheinen gerade Offline zu sein :/ Mehr Infos findest Du auf
-                                <a href={'http://twitter.com/GameHubOne'} target={'_blank'}> Twitter</a> oder auf
+                                Unsere Server scheinen gerade Offline zu sein :/ Mehr Infos findest
+                                Du auf{' '}
+                                <a
+                                    href={'http://twitter.com/GameHubOne'}
+                                    target={'_blank'}
+                                >
+                                    Twitter{' '}
+                                </a>
+                                oder auf{' '}
                                 <a href={'https://status.gamehub.one'} target={'_blank'}> unserer Status-Seite</a>.
                             </span> :
                             <span>
@@ -29,7 +36,7 @@ class LoadingScreen extends React.Component {
                     <div className={'bounce double-bounce1'}/>
                     <div className={'bounce double-bounce2'}/>
                 </div>
-                <h1>Gleich geht's los :-)</h1>
+                <h1>Gleich geht&apos;s los :-)</h1>
                 <span>Du wirst angemeldet...</span>
             </div>
         );

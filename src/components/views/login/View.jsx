@@ -1,8 +1,8 @@
 import React from 'react';
 import Cookies from 'universal-cookie';
 
-import RegistrationForm from "./forms/RegistrationForm";
-import LoginForm from "./forms/LoginForm";
+import RegistrationForm from './forms/RegistrationForm';
+import LoginForm from './forms/LoginForm';
 
 class Login extends React.Component {
 
@@ -21,16 +21,16 @@ class Login extends React.Component {
 
     login(user) {
         console.log(user);
-        this.cookies.set('session', user.session, {path: '/'});
-        this.cookies.set('userId', user.id, {path: '/'});
+        this.cookies.set('session', user.session, { path: '/' });
+        this.cookies.set('userId', user.id, { path: '/' });
         this.props.afterLogin();
     }
 
     switchForm() {
         if (this.state.currentForm === 'registration') {
-            this.setState({currentForm: 'login'});
+            this.setState({ currentForm: 'login' });
         } else {
-            this.setState({currentForm: 'registration'});
+            this.setState({ currentForm: 'registration' });
         }
     }
 
@@ -41,7 +41,7 @@ class Login extends React.Component {
             login = (
                 <div className={'login container'}>
                     {
-                        this.state.currentForm === "registration" ?
+                        this.state.currentForm === 'registration' ?
                             <RegistrationForm switch={this.switchForm}/> :
                             <LoginForm switch={this.switchForm} login={this.login}/>
                     }

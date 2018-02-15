@@ -29,7 +29,7 @@ class LoginForm extends React.Component {
     }
 
     login() {
-        this.setState({responseText: <Message/>});
+        this.setState({ responseText: <Message/> });
         const user = this.formData.get('login-user');
         // TODO CHANGE URL
         fetch('http://localhost:8080/login', {
@@ -38,7 +38,7 @@ class LoginForm extends React.Component {
                 'Accept': 'application/json',
                 'Content-Type': 'application/x-www-form-urlencoded',
             },
-            body: (user.indexOf("@") > -1 ? 'mail' : 'username') + '=' +
+            body: (user.indexOf('@') > -1 ? 'mail' : 'username') + '=' +
             encodeURIComponent(this.formData.get('login-user')) +
             '&password=' + encodeURIComponent(this.formData.get('login-password'))
         })
@@ -62,8 +62,8 @@ class LoginForm extends React.Component {
                         Login
                     </h1>
                     <Message type={'info'}>
-                        Einmal anmelden und wir erinnern uns an Dich. Funktioniert nur in 99% der Fällen also ab und zu
-                        werden wir uns hier wieder sehen :)
+                        Einmal anmelden und wir erinnern uns an Dich. Funktioniert nur in 99% der
+                        Fällen also ab und zu werden wir uns hier wieder sehen :)
                     </Message>
                     {this.state.responseText}
                     <Form>
@@ -74,8 +74,10 @@ class LoginForm extends React.Component {
                         >
                             Mail Adresse oder Benutzername
                         </Input>
-                        <Input type={'password'} id={'login-password'} onchange={this.setData}>Passwort</Input>
-                        <Button id={'login-button'} type={'submit'} onclick={this.login}>Anmelden</Button>
+                        <Input type={'password'} id={'login-password'}
+                               onchange={this.setData}>Passwort</Input>
+                        <Button id={'login-button'} type={'submit'}
+                                onclick={this.login}>Anmelden</Button>
                     </Form>
                 </Panel>
                 <Panel>
@@ -88,5 +90,9 @@ class LoginForm extends React.Component {
         );
     }
 }
+
+LoginForm.propTypes = {
+    switch: PropTypes.func
+};
 
 export default LoginForm;

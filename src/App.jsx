@@ -1,10 +1,10 @@
-import React, {Component} from 'react';
+import React, { Component } from 'react';
 import Cookies from 'universal-cookie';
 import './css/main.css';
 
 import Login from './components/views/login/View';
-import LoadingScreen from "./components/views/LoadingScreen";
-import Launcher from "./components/views/launcher/View";
+import LoadingScreen from './components/views/LoadingScreen';
+import Launcher from './components/views/launcher/View';
 
 class App extends Component {
 
@@ -47,23 +47,32 @@ class App extends Component {
                         })
                             .then((body) => body.json())
                             .then((json) => {
-                                this.setState({loggedIn: json.status === 'ACCEPTED'});
+                                this.setState({ loggedIn: json.status === 'ACCEPTED' });
                                 if (json.status !== 'ACCEPTED') {
-                                    this.setState({loading: false});
+                                    this.setState({ loading: false });
                                     return;
                                 }
 
-                                this.setState({loading: false, loggedIn: true});
+                                this.setState({
+                                    loading: false,
+                                    loggedIn: true
+                                });
                             });
                     } else {
-                        this.setState({loading: false, loggedIn: false});
+                        this.setState({
+                            loading: false,
+                            loggedIn: false
+                        });
                     }
                 } else {
-                    this.setState({loading: false});
+                    this.setState({ loading: false });
                 }
             })
             .catch(() => {
-                this.setState({loading: false, offline: true});
+                this.setState({
+                    loading: false,
+                    offline: true
+                });
             });
     }
 

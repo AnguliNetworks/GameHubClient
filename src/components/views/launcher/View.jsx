@@ -1,10 +1,10 @@
 import React from 'react';
-import Column from "../../general/Column";
-import Panel from "../../general/Panel";
-import UserInfo from "../../general/user/UserInfo";
-import Link from "../../general/Link";
-import Avatar from "../../general/user/Avatar";
-import GameOverview from "./game/Overview";
+import Column from '../../general/Column';
+import Panel from '../../general/Panel';
+import UserInfo from '../../general/user/UserInfo';
+import Link from '../../general/Link';
+import Avatar from '../../general/user/Avatar';
+import GameOverview from './game/Overview';
 
 class Launcher extends React.Component {
 

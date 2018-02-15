@@ -1,6 +1,6 @@
 import React from 'react';
-import Avatar from "../../../general/user/Avatar";
-import Button from "../../../general/form/Button";
+import Avatar from '../../../general/user/Avatar';
+import Button from '../../../general/form/Button';
 
 class GameOverview extends React.Component {
 
