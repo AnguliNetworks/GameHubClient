@@ -1,13 +1,19 @@
 import React from 'react';
+import PropTypes from 'prop-types';
 
 function Column(props) {
 
     return (
-        <div className={'column ' + props.size}>
+        <div className={`column ${props.size}`}>
             {props.children}
         </div>
     );
 
 }
+
+Column.propTypes = {
+    size: PropTypes.string.isRequired,
+    children: PropTypes.element.isRequired
+};
 
 export default Column;
