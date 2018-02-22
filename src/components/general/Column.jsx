@@ -1,14 +1,13 @@
 import React from 'react';
 
-class Column extends React.Component {
+function Column(props) {
 
-    render() {
-        return (
-            <div className={'column ' + this.props.size}>
-                {this.props.children}
-            </div>
-        );
-    }
+    return (
+        <div className={'column ' + props.size}>
+            {props.children}
+        </div>
+    );
+
 }
 
 export default Column;

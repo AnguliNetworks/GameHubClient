@@ -1,9 +1,11 @@
 import React from 'react';
-import Link from "../Link";
+import Link from '../Link';
+import PropTypes from 'prop-types';
 
 class Modal extends React.Component {
 
     constructor(props) {
+
         super(props);
 
         this.props.bindModal(this);
@@ -15,14 +17,19 @@ class Modal extends React.Component {
         this.closeModal = this.closeModal.bind(this);
         this.showModal = this.showModal.bind(this);
         this.handleMouseDown = this.handleMouseDown.bind(this);
+
     }
 
     componentDidMount() {
+
         document.addEventListener('mousedown', this.handleMouseDown);
+
     }
 
     componentWillUnmount() {
+
         document.removeEventListener('mousedown', this.handleMouseDown);
+
     }
 
     handleMouseDown(event) {
@@ -36,19 +43,25 @@ class Modal extends React.Component {
         }
 
         this.closeModal();
+
     }
 
     closeModal() {
-        this.setState({hide: true});
+
+        this.setState({ hide: true });
+
     }
 
     showModal() {
-        this.setState({hide: false});
+
+        this.setState({ hide: false });
+
     }
 
     render() {
+
         return (
-            <div className={'modal' + (this.state.hide ? ' hidden' : '')} id={this.props.title}>
+            <div className={`modal${this.state.hide ? ' hidden' : ''}`} id={this.props.title}>
                 <div className={'body'}>
                     <header>
                         <span className={'title'}>{this.props.title}</span>
@@ -63,7 +76,14 @@ class Modal extends React.Component {
                 </div>
             </div>
         );
+
     }
 }
+
+Modal.propTypes = {
+    bindModal: PropTypes.func.isRequired,
+    title: PropTypes.string.isRequired,
+    children: PropTypes.element.isRequired
+};
 
 export default Modal;

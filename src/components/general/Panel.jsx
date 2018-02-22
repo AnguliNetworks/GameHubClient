@@ -1,14 +1,16 @@
 import React from 'react';
 
-class Panel extends React.Component {
+function Panel(props) {
 
-    render() {
-        return (
-            <div className={'panel' + (this.props.transparent ? ' transparent' : '')} id={this.props.id}>
-                {this.props.children}
-            </div>
-        );
-    }
+    return (
+        <div
+            className={`panel${(props.transparent ? ' transparent' : '')}`}
+            id={props.id}
+        >
+            {props.children}
+        </div>
+    );
+
 }
 
 export default Panel;
