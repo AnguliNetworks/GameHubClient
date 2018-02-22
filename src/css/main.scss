@@ -85,14 +85,14 @@ $color: rgb(0, 122, 255);
 }
 
 @mixin hidden() {
-  border: 0 !important;
-  clip: rect(0, 0, 0, 0) !important;
-  height: 1px !important;
-  margin: -1px !important;
-  overflow: hidden !important;
-  padding: 0 !important;
-  position: absolute !important;
-  width: 1px !important;
+  border: 0;
+  clip: rect(0, 0, 0, 0);
+  height: 1px;
+  margin: -1px;
+  overflow: hidden;
+  padding: 0;
+  position: absolute;
+  width: 1px;
 }
 
 @keyframes loading {
@@ -341,32 +341,6 @@ div.launcher {
   }
 }
 
-div.button {
-  input {
-    margin-top: 10px;
-    display: block;
-    padding: 9px 15px 7px;
-    outline: none;
-    border-radius: 3px;
-    @include transition(border-color $default-transition-time, color $default-transition-time, background-color $default-transition-time);
-
-    font-size: 16px;
-    background-color: #007AFF;
-    border: none !important;
-    color: #fff !important;
-    cursor: pointer;
-
-    &:hover {
-      background-color: #0068cd;
-    }
-
-    &:disabled {
-      background-color: #888;
-      cursor: not-allowed;
-    }
-  }
-}
-
 div.panel {
   background-color: #fff;
   text-align: center;
@@ -418,6 +392,32 @@ div.panel {
       padding: 10px;
       font-weight: 300;
       font-size: 0.9em;
+    }
+  }
+}
+
+div.button {
+  input {
+    margin-top: 10px;
+    display: block;
+    padding: 9px 15px 7px;
+    outline: none;
+    border-radius: 3px;
+    @include transition(border-color $default-transition-time, color $default-transition-time, background-color $default-transition-time);
+
+    font-size: 16px;
+    background-color: #007AFF;
+    border: none !important;
+    color: #fff !important;
+    cursor: pointer;
+
+    &:hover {
+      background-color: #0068cd;
+    }
+
+    &:disabled {
+      background-color: #888;
+      cursor: not-allowed;
     }
   }
 }
