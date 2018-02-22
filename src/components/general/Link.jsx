@@ -14,7 +14,7 @@ class Link extends React.Component {
 
     handleClick(event) {
 
-        if (this.props.link === undefined) {
+        if (this.props.link === '/') {
 
             event.preventDefault();
 
@@ -37,15 +37,10 @@ class Link extends React.Component {
     render() {
 
         const attributes = {
-            href: this.props.link ? this.props.link : '/',
+            href: this.props.link,
+            onClick: this.handleClick,
             className: this.props.color
         };
-
-        if (this.props.onclick) {
-
-            attributes.onClick = this.handleClick;
-
-        }
 
         if (this.props.className) {
 
