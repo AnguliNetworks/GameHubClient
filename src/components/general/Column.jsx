@@ -13,7 +13,15 @@ function Column(props) {
 
 Column.propTypes = {
     size: PropTypes.string.isRequired,
-    children: PropTypes.element.isRequired
+    children: PropTypes.oneOfType([
+        PropTypes.element,
+        PropTypes.array,
+        PropTypes.string
+    ])
+};
+
+Column.defaultProps = {
+    children: ' '
 };
 
 export default Column;

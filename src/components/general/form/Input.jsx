@@ -17,7 +17,7 @@ class Input extends React.Component {
 
     handleChange(event) {
 
-        const { value } = event.target.value;
+        const { value } = event.target;
         this.setState({ value });
 
         if (this.props.onchange) {
@@ -32,18 +32,18 @@ class Input extends React.Component {
 
         }
 
-        let validation = false;
+        let valid = false;
 
         switch (this.props.validation.type) {
 
             case 'mail':
-                validation = /^[_A-Za-z0-9]+(\.[_A-Za-z0-9-]+)*@[A-Za-z0-9-]+(\.[A-Za-z0-9]+)*(\.[A-Za-z]{2,})$/.test(value);
+                valid = /^[_A-Za-z0-9]+(\.[_A-Za-z0-9-]+)*@[A-Za-z0-9-]+(\.[A-Za-z0-9]+)*(\.[A-Za-z]{2,})$/.test(value);
                 break;
             case 'username':
-                validation = /^[a-zA-Z0-9_.-]{3,}$/.test(value);
+                valid = /^[a-zA-Z0-9_.-]{3,}$/.test(value);
                 break;
             case 'password':
-                validation = /^(?=.*[A-Z])(?=.*[a-z])(?=.*\d)[A-Za-z\d!-}ä-üÄ-Üß §]{8,}$/.test(value);
+                valid = /^(?=.*[A-Z])(?=.*[a-z])(?=.*\d)[A-Za-z\d!-}ä-üÄ-Üß §]{8,}$/.test(value);
                 break;
             default:
 
@@ -51,12 +51,15 @@ class Input extends React.Component {
 
         if (value === '') {
 
-            validation = undefined;
+            valid = undefined;
 
         }
 
-        this.setState({ valid: validation });
-        this.props.validation.fn(this.props.id, value, validation);
+        this.setState({
+            valid
+        });
+
+        this.props.validation.fn(this.props.id, value, valid);
 
     }
 
@@ -68,8 +71,7 @@ class Input extends React.Component {
             name: this.props.id,
             placeholder: this.props.children,
             value: this.state.value,
-            onChange: this.handleChange,
-            onBlur: this.handleChange
+            onChange: this.handleChange
         };
 
         if (this.state.valid !== undefined) {
