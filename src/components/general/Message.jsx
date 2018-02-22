@@ -1,5 +1,4 @@
 import React from 'react';
-import Column from './Column';
 import PropTypes from 'prop-types';
 
 function Message(props) {
@@ -12,7 +11,7 @@ function Message(props) {
 
 }
 
-Column.propTypes = {
+Message.propTypes = {
     type: PropTypes.string.isRequired,
     id: PropTypes.string.isRequired,
     children: PropTypes.element.isRequired

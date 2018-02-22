@@ -1,5 +1,4 @@
 import React from 'react';
-import Column from './Column';
 import PropTypes from 'prop-types';
 
 function Panel(props) {
@@ -15,7 +14,7 @@ function Panel(props) {
 
 }
 
-Column.propTypes = {
+Panel.propTypes = {
     id: PropTypes.string.isRequired,
     children: PropTypes.element.isRequired
 };
