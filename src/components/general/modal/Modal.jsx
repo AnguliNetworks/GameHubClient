@@ -1,6 +1,6 @@
 import React from 'react';
-import Link from '../Link';
 import PropTypes from 'prop-types';
+import { Link } from '../Link';
 
 class Modal extends React.Component {
 
@@ -35,11 +35,15 @@ class Modal extends React.Component {
     handleMouseDown(event) {
 
         if (this.state.hide) {
+
             return;
+
         }
 
         if (event.target.className !== 'modal') {
+
             return;
+
         }
 
         this.closeModal();
@@ -78,6 +82,7 @@ class Modal extends React.Component {
         );
 
     }
+
 }
 
 Modal.propTypes = {

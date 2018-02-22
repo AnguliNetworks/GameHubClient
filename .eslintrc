@@ -3,12 +3,15 @@
   "env": {
     "browser": true
   },
+  "plugins": [
+    "react"
+  ],
   "rules": {
     "indent": [
       "error",
       4,
       {
-        "SwitchCase": 4
+        "SwitchCase": 1
       }
     ],
     "react/jsx-indent": [
@@ -26,6 +29,16 @@
     "padded-blocks": [
       "error",
       "always"
+    ],
+    "jsx-a11y/anchor-is-valid": [
+      "error",
+      "never"
+    ],
+    "react/jsx-curly-brace-presence": [
+      "off"
+    ],
+    "jsx-a11y/label-has-for": [
+      "off"
     ]
   }
 }

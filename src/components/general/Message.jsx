@@ -3,8 +3,18 @@ import PropTypes from 'prop-types';
 
 function Message(props) {
 
+    const attributes = {
+        className: `message ${props.type}`
+    };
+
+    if (props.id) {
+
+        attributes.id = props.id;
+
+    }
+
     return (
-        <p className={`message ${props.type}`} id={props.id}>
+        <p {...attributes}>
             {props.children}
         </p>
     );
@@ -12,9 +22,15 @@ function Message(props) {
 }
 
 Message.propTypes = {
-    type: PropTypes.string.isRequired,
-    id: PropTypes.string.isRequired,
-    children: PropTypes.element.isRequired
+    type: PropTypes.string,
+    children: PropTypes.element,
+    id: PropTypes.string
+};
+
+Message.defaultProps = {
+    type: '',
+    children: ' ',
+    id: undefined
 };
 
 export default Message;

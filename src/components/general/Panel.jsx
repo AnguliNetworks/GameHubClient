@@ -3,11 +3,18 @@ import PropTypes from 'prop-types';
 
 function Panel(props) {
 
+    const attributes = {
+        className: `panel${(props.transparent ? ' transparent' : '')}`
+    };
+
+    if (props.id) {
+
+        attributes.id = props.id;
+
+    }
+
     return (
-        <div
-            className={`panel${(props.transparent ? ' transparent' : '')}`}
-            id={props.id}
-        >
+        <div {...attributes}>
             {props.children}
         </div>
     );
@@ -15,8 +22,14 @@ function Panel(props) {
 }
 
 Panel.propTypes = {
-    id: PropTypes.string.isRequired,
-    children: PropTypes.element.isRequired
+    children: PropTypes.element.isRequired,
+    id: PropTypes.string,
+    transparent: PropTypes.bool
+};
+
+Panel.defaultProps = {
+    id: undefined,
+    transparent: false
 };
 
 export default Panel;

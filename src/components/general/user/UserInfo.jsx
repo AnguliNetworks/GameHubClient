@@ -1,39 +1,47 @@
 import React from 'react';
-import Avatar from "./Avatar";
+import PropTypes from 'prop-types';
+import Avatar from './Avatar';
 
-class UserInfo extends React.Component {
+function UserInfo(props) {
 
-    render() {
-        let status = '';
+    let status = '';
 
-        switch (this.props.status) {
-            case 'Im Spiel':
-                status = 'ingame';
-                break;
-            case 'Online':
-                status = 'online';
-                break;
-            case 'Beschäftigt':
-                status = 'busy';
-                break;
-            case 'AFK':
-                status = 'afk';
-                break;
-            default:
-                break;
-        }
+    switch (props.status) {
 
-        return (
-            // TODO ADD CLICK HANDLER
-            <div className={'user'}>
-                <Avatar status={status} src={this.props.avatar}/>
-                <div className={'info'}>
-                    <span className={'name'}>{this.props.username}</span>
-                    <span className={'status'}>{this.props.status}</span>
-                </div>
-            </div>
-        );
+        case 'Im Spiel':
+            status = 'ingame';
+            break;
+        case 'Online':
+            status = 'online';
+            break;
+        case 'Beschäftigt':
+            status = 'busy';
+            break;
+        case 'AFK':
+            status = 'afk';
+            break;
+        default:
+
     }
+
+    return (
+        // TODO ADD CLICK HANDLER (PROFILE ETC)
+        <div className={'user'}>
+            <Avatar status={status} src={props.avatar} />
+            <div className={'info'}>
+                <span className={'name'}>{props.username}</span>
+                <span className={'status'}>{props.status}</span>
+            </div>
+        </div>
+    );
+
 }
+
+UserInfo.propTypes = {
+    // TODO ADD DEFAULT AVATAR
+    avatar: PropTypes.string.isRequired,
+    username: PropTypes.string.isRequired,
+    status: PropTypes.string.isRequired
+};
 
 export default UserInfo;

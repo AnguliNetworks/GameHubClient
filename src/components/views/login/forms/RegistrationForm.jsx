@@ -1,4 +1,5 @@
 import React from 'react';
+import PropTypes from 'prop-types';
 
 import Panel from '../../../general/Panel';
 import Message from '../../../general/Message';
@@ -11,6 +12,7 @@ import Modal from '../../../general/modal/Modal';
 class RegistrationForm extends React.Component {
 
     constructor(props) {
+
         super(props);
 
         this.formData = new Map();
@@ -23,36 +25,47 @@ class RegistrationForm extends React.Component {
         this.setValidationFor = this.setValidationFor.bind(this);
         this.bindSitePolicyModal = this.bindSitePolicyModal.bind(this);
         this.bindPrivacyModal = this.bindPrivacyModal.bind(this);
+
     }
 
     setValidationFor(id, value, valid) {
+
         this.formData.set(id, {
             value,
             valid
         });
-        console.log(value);
 
         let allValid = true;
 
         if (!valid || this.formData.size < 3) {
+
             allValid = false;
+
         } else {
-            this.formData.forEach((value, key) => {
+
+            this.formData.forEach((formValue, key) => {
+
                 if (key === id) {
+
                     return;
+
                 }
 
-                if (!value.valid) {
+                if (!formValue.valid) {
+
                     allValid = false;
+
                 }
+
             });
+
         }
 
         this.setState({ enableRegistrationButton: allValid });
+
     }
 
     register() {
-        console.log(this.formData.get('registration-password').value);
 
         this.setState({ enableRegistrationButton: false });
 
@@ -60,37 +73,44 @@ class RegistrationForm extends React.Component {
         fetch('http://localhost:8080/register', {
             method: 'POST',
             headers: {
-                'Accept': 'application/json',
+                Accept: 'application/json',
                 'Content-Type': 'application/x-www-form-urlencoded'
             },
-            body: 'mail=' + encodeURIComponent(this.formData.get('registration-mail').value) +
-            '&username=' + encodeURIComponent(this.formData.get('registration-username').value) +
-            '&password=' + encodeURIComponent(this.formData.get('registration-password').value)
+            body: `mail=${encodeURIComponent(this.formData.get('registration-mail').value)}&username=${encodeURIComponent(this.formData.get('registration-mail'))}&password=${encodeURIComponent(this.formData.get('registration-password').value)}`
         })
-            .then((body) => body.json())
+            .then(body => body.json())
             .then((json) => {
-                console.log(json);
+
                 this.setState({
                     responseText:
-                        <Message
-                            type={json.status === 'CREATED' ? 'success' : 'error'}
-                        >
-                            {json.message}
-                        </Message>
+                        (
+                            <Message
+                                type={json.status === 'CREATED' ? 'success' : 'error'}
+                            >
+                                {json.message}
+                            </Message>
+                        )
                 });
+
             });
+
     }
 
     bindSitePolicyModal(modal) {
+
         this.setState({ sitePolicy: modal });
+
     }
 
     bindPrivacyModal(modal) {
+
         this.setState({ privacy: modal });
+
     }
 
     render() {
-        // TODO ADD LEGAL STUFF
+
+        // TODO CHANGE MODAL TEXT
         return (
             <div>
                 <Modal title={'Nutzungsbedingungen'} bindModal={this.bindSitePolicyModal}>
@@ -203,7 +223,13 @@ class RegistrationForm extends React.Component {
                 </Panel>
             </div>
         );
+
     }
+
 }
+
+RegistrationForm.propTypes = {
+    switch: PropTypes.func.isRequired
+};
 
 export default RegistrationForm;

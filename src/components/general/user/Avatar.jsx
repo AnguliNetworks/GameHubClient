@@ -1,14 +1,26 @@
 import React from 'react';
+import PropTypes from 'prop-types';
 
-class Avatar extends React.Component {
+function Avatar(props) {
 
-    render() {
-        return (
-            <div className={'avatar-container ' + (this.props.status ? this.props.status : '')}>
-                <figure className={'avatar'} style={{backgroundImage: 'url(' + this.props.src + ')'}}/>
-            </div>
-        );
-    }
+    return (
+        <div className={`avatar-container ${props.status ? props.status : ''}`}>
+            <figure
+                className={'avatar'}
+                style={{ backgroundImage: `url(${props.src})` }}
+            />
+        </div>
+    );
+
 }
+
+Avatar.propTypes = {
+    src: PropTypes.string.isRequired,
+    status: PropTypes.string
+};
+
+Avatar.defaultProps = {
+    status: undefined
+};
 
 export default Avatar;

@@ -12,10 +12,11 @@ import Link from '../../../general/Link';
 class LoginForm extends React.Component {
 
     constructor(props) {
+
         super(props);
 
         this.state = {
-            responseText: <Message/>
+            responseText: <Message />
         };
 
         this.formData = new Map();
@@ -23,44 +24,49 @@ class LoginForm extends React.Component {
 
         this.login = this.login.bind(this);
         this.setData = this.setData.bind(this);
+
     }
 
     setData(component, value) {
+
         this.formData.set(component.props.id, value);
+
     }
 
     login() {
-        this.setState({ responseText: <Message/> });
+
+        this.setState({ responseText: <Message /> });
         const user = this.formData.get('login-user');
         // TODO CHANGE URL
         fetch('http://localhost:8080/login', {
             method: 'POST',
             headers: {
-                'Accept': 'application/json',
+                Accept: 'application/json',
                 'Content-Type': 'application/x-www-form-urlencoded'
             },
             body:
-                `${
-                    (user.indexOf('@') > -1 ? 'mail' : 'username')
-                    }=${
-                    encodeURIComponent(this.formData.get('login-user'))
-                    }&password=${
-                    encodeURIComponent(this.formData.get('login-password'))
-                    }`
+                `${(user.indexOf('@') > -1 ? 'mail' : 'username')}=${encodeURIComponent(this.formData.get('login-user'))}&password=${encodeURIComponent(this.formData.get('login-password'))}`
         })
-            .then((body) => body.json())
+            .then(body => body.json())
             .then((json) => {
+
                 if (json.status !== 'ACCEPTED') {
+
                     this.setState({
                         responseText: <Message type={'error'}>{json.message}</Message>
                     });
                     return;
+
                 }
+
                 this.props.login(json.object);
+
             });
+
     }
 
     render() {
+
         return (
             <div className={'container'}>
                 <Panel>
@@ -104,11 +110,14 @@ class LoginForm extends React.Component {
                 </Panel>
             </div>
         );
+
     }
+
 }
 
 LoginForm.propTypes = {
-    switch: PropTypes.func.isRequired
+    switch: PropTypes.func.isRequired,
+    login: PropTypes.func.isRequired
 };
 
 export default LoginForm;

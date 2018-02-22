@@ -1,14 +1,18 @@
 import React from 'react';
+import PropTypes from 'prop-types';
 
-class Form extends React.Component {
+function Form(props) {
 
-    render() {
-        return (
-            <form className={'form'} method={'POST'} action={''}>
-                {this.props.children}
-            </form>
-        );
-    }
+    return (
+        <form className={'form'} method={'POST'} action={''}>
+            {props.children}
+        </form>
+    );
+
 }
+
+Form.propTypes = {
+    children: PropTypes.element.isRequired
+};
 
 export default Form;

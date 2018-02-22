@@ -17,8 +17,8 @@ class Input extends React.Component {
 
     handleChange(event) {
 
-        const value = event.target.value;
-        this.setState({ value: value });
+        const { value } = event.target.value;
+        this.setState({ value });
 
         if (this.props.onchange) {
 
@@ -29,6 +29,7 @@ class Input extends React.Component {
         if (this.props.validation === undefined) {
 
             return;
+
         }
 
         let validation = false;
@@ -45,11 +46,13 @@ class Input extends React.Component {
                 validation = /^(?=.*[A-Z])(?=.*[a-z])(?=.*\d)[A-Za-z\d!-}ä-üÄ-Üß §]{8,}$/.test(value);
                 break;
             default:
+
         }
 
         if (value === '') {
 
             validation = undefined;
+
         }
 
         this.setState({ valid: validation });
@@ -59,33 +62,42 @@ class Input extends React.Component {
 
     render() {
 
+        const attributes = {
+            id: this.props.id,
+            type: this.props.type,
+            name: this.props.id,
+            placeholder: this.props.children,
+            value: this.state.value,
+            onChange: this.handleChange,
+            onBlur: this.handleChange
+        };
+
+        if (this.state.valid !== undefined) {
+
+            attributes.className = this.state.valid ? 'valid' : 'invalid';
+
+        }
+
         return (
             <div>
                 <label htmlFor={this.props.id}>{this.props.children}</label>
-                <input
-                    className={this.state.valid === undefined ? '' : (this.state.valid ? 'valid' : 'invalid')}
-                    type={this.props.type}
-                    name={this.props.id}
-                    id={this.props.id}
-                    placeholder={this.props.children}
-                    value={this.state.value}
-                    onChange={this.handleChange}
-                    onBlur={this.handleChange}
-                />
+                <input {...attributes} />
             </div>
         );
+
     }
 
 }
 
 Input.propTypes = {
+    id: PropTypes.string.isRequired,
+    children: PropTypes.string.isRequired,
+    type: PropTypes.string.isRequired,
     onchange: PropTypes.func,
     validation: PropTypes.shape({
         type: PropTypes.string,
         fn: PropTypes.func
-    }),
-    children: PropTypes.string.isRequired,
-    type: PropTypes.string.isRequired
+    })
 };
 
 Input.defaultProps = {

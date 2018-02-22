@@ -1,8 +1,8 @@
 const electron = require('electron');
 // Module to control application life.
-const app = electron.app;
+const { app } = electron.app;
 // Module to create native browser window.
-const BrowserWindow = electron.BrowserWindow;
+const { BrowserWindow } = electron.BrowserWindow;
 
 const path = require('path');
 const url = require('url');
@@ -30,15 +30,19 @@ function createWindow() {
 
     // Emitted when the window is closed.
     mainWindow.on('closed', () => {
+
         // Dereference the window object, usually you would store windows
         // in an array if your app supports multi windows, this is the time
         // when you should delete the corresponding element.
         mainWindow = null;
+
     });
 
     mainWindow.webContents.on('new-window', (event, link) => {
+
         event.preventDefault();
         electron.shell.openExternal(link);
+
     });
 
 }

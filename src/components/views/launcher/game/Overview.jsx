@@ -1,24 +1,31 @@
 import React from 'react';
+import PropTypes from 'prop-types';
 import Avatar from '../../../general/user/Avatar';
 import Button from '../../../general/form/Button';
 
-class GameOverview extends React.Component {
+function GameOverview(props) {
 
-    render() {
-        return (
-            // TODO ADD EXPAND AND START FUNCTION
-            <div className={'game'}>
-                <Avatar src={this.props.icon}/>
-                <div className={'info'}>
-                    <span className={'name'}>{this.props.name}</span>
-                    <span className={'status'}>{this.props.status}</span>
-                </div>
-                <Button className={'start-button'} id={'play-' + this.props.id} hidden>
-                    Starten
-                </Button>
+    return (
+        // TODO ADD EXPAND AND START FUNCTION
+        <div className={'game'}>
+            <Avatar src={props.icon} />
+            <div className={'info'}>
+                <span className={'name'}>{props.name}</span>
+                <span className={'status'}>{props.status}</span>
             </div>
-        );
-    }
+            <Button className={'start-button'} id={`play-${props.id}`} hiddenLabel>
+                Starten
+            </Button>
+        </div>
+    );
+
 }
+
+GameOverview.propTypes = {
+    icon: PropTypes.string.isRequired,
+    name: PropTypes.string.isRequired,
+    status: PropTypes.string.isRequired,
+    id: PropTypes.string.isRequired
+};
 
 export default GameOverview;
