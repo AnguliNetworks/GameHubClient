@@ -23,7 +23,11 @@ function Message(props) {
 
 Message.propTypes = {
     type: PropTypes.string,
-    children: PropTypes.element,
+    children: PropTypes.oneOfType([
+        PropTypes.element,
+        PropTypes.array,
+        PropTypes.string
+    ]),
     id: PropTypes.string
 };
 

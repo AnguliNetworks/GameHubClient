@@ -22,12 +22,17 @@ function Panel(props) {
 }
 
 Panel.propTypes = {
-    children: PropTypes.element.isRequired,
+    children: PropTypes.oneOfType([
+        PropTypes.element,
+        PropTypes.array,
+        PropTypes.string
+    ]),
     id: PropTypes.string,
     transparent: PropTypes.bool
 };
 
 Panel.defaultProps = {
+    children: ' ',
     id: undefined,
     transparent: false
 };

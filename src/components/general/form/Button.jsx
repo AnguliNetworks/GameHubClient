@@ -69,7 +69,11 @@ class Button extends React.Component {
 
 Button.propTypes = {
     id: PropTypes.string.isRequired,
-    children: PropTypes.element.isRequired,
+    children: PropTypes.oneOfType([
+        PropTypes.element,
+        PropTypes.array,
+        PropTypes.string
+    ]),
     disabled: PropTypes.bool,
     onclick: PropTypes.func,
     className: PropTypes.string,
@@ -78,6 +82,7 @@ Button.propTypes = {
 };
 
 Button.defaultProps = {
+    children: ' ',
     disabled: false,
     onclick: undefined,
     className: '',

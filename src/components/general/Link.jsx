@@ -1,5 +1,6 @@
 import React from 'react';
 import PropTypes from 'prop-types';
+import Modal from './modal/Modal';
 
 class Link extends React.Component {
 
@@ -69,16 +70,21 @@ class Link extends React.Component {
 }
 
 Link.propTypes = {
-    children: PropTypes.element.isRequired,
+    children: PropTypes.oneOfType([
+        PropTypes.element,
+        PropTypes.array,
+        PropTypes.string
+    ]),
     color: PropTypes.string,
     className: PropTypes.string,
     link: PropTypes.string,
-    modal: PropTypes.element,
+    modal: PropTypes.instanceOf(Modal),
     onclick: PropTypes.func,
     extern: PropTypes.bool
 };
 
 Link.defaultProps = {
+    children: ' ',
     color: 'blue',
     className: undefined,
     link: '/',

@@ -12,7 +12,15 @@ function Form(props) {
 }
 
 Form.propTypes = {
-    children: PropTypes.element.isRequired
+    children: PropTypes.oneOfType([
+        PropTypes.element,
+        PropTypes.array,
+        PropTypes.string
+    ])
+};
+
+Form.defaultProps = {
+    children: ' '
 };
 
 export default Form;
