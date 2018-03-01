@@ -59,6 +59,9 @@ class App extends Component {
                                 this.setState({ loggedIn: sessionJson.status === 'ACCEPTED' });
                                 if (sessionJson.status !== 'ACCEPTED') {
 
+                                    this.cookies.remove('session');
+                                    this.cookies.remove('userId');
+
                                     this.setState({ loading: false });
                                     return;
 
@@ -111,7 +114,11 @@ class App extends Component {
 
         return (
             <div>
-                {this.state.loggedIn ? <Launcher /> : <Login afterLogin={this.loadUI} />}
+                {
+                    this.state.loggedIn ?
+                        <Launcher loadUi={this.loadUI} /> :
+                        <Login afterLogin={this.loadUI} />
+                }
             </div>
         );
 
