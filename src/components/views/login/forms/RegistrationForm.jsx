@@ -69,29 +69,31 @@ class RegistrationForm extends React.Component {
 
     register() {
 
-        this.setState({ enableRegistrationButton: false });
+        this.setState({
+            enableRegistrationButton: false,
+            responseText: <Message>Deine Anfrage wird bearbeitet</Message>
+        });
 
         new Request('register', {
             mail: this.formData.get('registration-mail').value,
             username: this.formData.get('registration-username').value,
             password: this.formData.get('registration-password').value
         }).post()
-            .then(json => this.setState({
-                responseText:
-                    (
-                        <Message type={'success'}>
-                            {json.message}
-                        </Message>
-                    )
-            }))
-            .catch(json => this.setState({
-                responseText:
-                    (
-                        <Message type={'error'}>
-                            {json.error}
-                        </Message>
-                    )
-            }));
+            .then(json => this.handleRegistration('success', json.message))
+            .catch(json => this.handleRegistration('error', json.error));
+
+    }
+
+    handleRegistration(status, message) {
+
+        this.setState({
+            responseText:
+                (
+                    <Message type={status}>
+                        {message}
+                    </Message>
+                )
+        });
 
     }
 
