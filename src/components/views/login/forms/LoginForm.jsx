@@ -36,30 +36,31 @@ class LoginForm extends React.Component {
     login() {
 
         this.setState({ responseText: <Message /> });
-        const user = this.formData.get('login-user');
         // TODO CHANGE URL
         fetch('http://localhost:8080/login', {
             method: 'POST',
             headers: {
                 Accept: 'application/json',
-                'Content-Type': 'application/x-www-form-urlencoded'
+                'Content-Type': 'application/json'
             },
-            body:
-                `${(user.indexOf('@') > -1 ? 'mail' : 'username')}=${encodeURIComponent(this.formData.get('login-user'))}&password=${encodeURIComponent(this.formData.get('login-password'))}`
+            body: JSON.stringify({
+                mail: this.formData.get('login-mail'),
+                password: this.formData.get('login-password')
+            })
         })
             .then(body => body.json())
             .then((json) => {
 
-                if (json.status !== 'ACCEPTED') {
+                if (json.error) {
 
                     this.setState({
-                        responseText: <Message type={'error'}>{json.message}</Message>
+                        responseText: <Message type={'error'}>{json.error}</Message>
                     });
                     return;
 
                 }
 
-                this.props.login(json.object);
+                this.props.login(json.token);
 
             });
 
@@ -81,10 +82,10 @@ class LoginForm extends React.Component {
                     <Form>
                         <Input
                             type={'text'}
-                            id={'login-user'}
+                            id={'login-mail'}
                             onchange={this.setData}
                         >
-                            Mail Adresse oder Benutzername
+                            Mail Adresse
                         </Input>
                         <Input
                             type={'password'}

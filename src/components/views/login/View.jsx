@@ -12,7 +12,7 @@ class Login extends React.Component {
         super(props);
 
         this.state = {
-            currentForm: 'registration'
+            currentForm: 'login'
         };
 
         this.cookies = new Cookies();
@@ -22,10 +22,9 @@ class Login extends React.Component {
 
     }
 
-    login(user) {
+    login(token) {
 
-        this.cookies.set('session', user.session, { path: '/' });
-        this.cookies.set('userId', user.id, { path: '/' });
+        this.cookies.set('token', token, { path: '/' });
         this.props.afterLogin();
 
     }

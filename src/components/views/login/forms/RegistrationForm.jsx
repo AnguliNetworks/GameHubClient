@@ -74,25 +74,26 @@ class RegistrationForm extends React.Component {
             method: 'POST',
             headers: {
                 Accept: 'application/json',
-                'Content-Type': 'application/x-www-form-urlencoded'
+                'Content-Type': 'application/json'
             },
-            body: `mail=${encodeURIComponent(this.formData.get('registration-mail').value)}&username=${encodeURIComponent(this.formData.get('registration-mail'))}&password=${encodeURIComponent(this.formData.get('registration-password').value)}`
+            body: JSON.stringify({
+                mail: this.formData.get('registration-mail').value,
+                username: this.formData.get('registration-username').value,
+                password: this.formData.get('registration-password').value
+            })
         })
             .then(body => body.json())
-            .then((json) => {
-
+            .then(json =>
                 this.setState({
                     responseText:
                         (
                             <Message
-                                type={json.status === 'CREATED' ? 'success' : 'error'}
+                                type={json.success ? 'success' : 'error'}
                             >
-                                {json.message}
+                                {json.success ? json.message : json.error}
                             </Message>
                         )
-                });
-
-            });
+                }));
 
     }
 

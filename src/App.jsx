@@ -40,9 +40,9 @@ class App extends Component {
             .then(body => body.json())
             .then((statusJson) => {
 
-                if (statusJson.status === 'OK') {
+                if (statusJson.success) {
 
-                    if (this.cookies.get('session') && this.cookies.get('userId')) {
+                    if (this.cookies.get('token')) {
 
                         // TODO CHANGE URL
                         fetch('http://localhost:8080/session-check', {
