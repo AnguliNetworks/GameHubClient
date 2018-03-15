@@ -2,6 +2,8 @@ import React from 'react';
 import Cookies from 'universal-cookie';
 import PropTypes from 'prop-types';
 
+import Request from '../../../../utility/Request';
+
 import Panel from '../../../general/Panel';
 import Message from '../../../general/Message';
 import Form from '../../../general/form/Form';
@@ -36,33 +38,15 @@ class LoginForm extends React.Component {
     login() {
 
         this.setState({ responseText: <Message /> });
-        // TODO CHANGE URL
-        fetch('http://localhost:8080/login', {
-            method: 'POST',
-            headers: {
-                Accept: 'application/json',
-                'Content-Type': 'application/json'
-            },
-            body: JSON.stringify({
-                mail: this.formData.get('login-mail'),
-                password: this.formData.get('login-password')
-            })
-        })
-            .then(body => body.json())
-            .then((json) => {
 
-                if (json.error) {
-
-                    this.setState({
-                        responseText: <Message type={'error'}>{json.error}</Message>
-                    });
-                    return;
-
-                }
-
-                this.props.login(json.token);
-
-            });
+        new Request('login', {
+            mail: this.formData.get('login-mail'),
+            password: this.formData.get('login-password')
+        }).post()
+            .then(json => this.props.login(json.token))
+            .catch(json => this.setState({
+                responseText: <Message type={'error'}>{json.error}</Message>
+            }));
 
     }
 

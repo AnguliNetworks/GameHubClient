@@ -2,6 +2,8 @@ import React, { Component } from 'react';
 import Cookies from 'universal-cookie';
 import './css/main.css';
 
+import Request, { setShowLogin } from './utility/Request';
+
 import Login from './components/views/login/View';
 import LoadingScreen from './components/views/LoadingScreen';
 import Launcher from './components/views/launcher/View';
@@ -20,6 +22,11 @@ class App extends Component {
 
         this.loadUI = this.loadUI.bind(this);
 
+        setShowLogin(() => this.setState({
+            loading: false,
+            loggedIn: false
+        }));
+
     }
 
     componentDidMount() {
@@ -30,75 +37,15 @@ class App extends Component {
 
     loadUI() {
 
-        fetch('http://localhost:8080/status', {
-            method: 'GET',
-            headers: {
-                Accept: 'application/json',
-                'Content-Type': 'application/x-www-form-urlencoded'
-            }
-        })
-            .then(body => body.json())
-            .then((statusJson) => {
-
-                if (statusJson.success) {
-
-                    if (this.cookies.get('token')) {
-
-                        // TODO CHANGE URL
-                        fetch('http://localhost:8080/session-check', {
-                            method: 'POST',
-                            headers: {
-                                Accept: 'application/json',
-                                'Content-Type': 'application/x-www-form-urlencoded'
-                            },
-                            body: `userId=${this.cookies.get('userId')}&session=${this.cookies.get('session')}`
-                        })
-                            .then(body => body.json())
-                            .then((sessionJson) => {
-
-                                this.setState({ loggedIn: sessionJson.status === 'ACCEPTED' });
-                                if (sessionJson.status !== 'ACCEPTED') {
-
-                                    this.cookies.remove('session');
-                                    this.cookies.remove('userId');
-
-                                    this.setState({ loading: false });
-                                    return;
-
-                                }
-
-                                this.setState({
-                                    loading: false,
-                                    loggedIn: true
-                                });
-
-                            });
-
-                    } else {
-
+        new Request('status').get()
+            .then(() =>
+                new Request('authenticate').get()
+                    .then(() =>
                         this.setState({
                             loading: false,
-                            loggedIn: false
-                        });
-
-                    }
-
-                } else {
-
-                    this.setState({
-                        offline: true
-                    });
-
-                }
-
-            })
-            .catch(() => {
-
-                this.setState({
-                    offline: true
-                });
-
-            });
+                            loggedIn: true
+                        })))
+            .catch(() => this.setState({ offline: true }));
 
     }
 

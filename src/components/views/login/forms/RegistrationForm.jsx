@@ -1,6 +1,8 @@
 import React from 'react';
 import PropTypes from 'prop-types';
 
+import Request from '../../../../utility/Request';
+
 import Panel from '../../../general/Panel';
 import Message from '../../../general/Message';
 import Form from '../../../general/form/Form';
@@ -69,31 +71,27 @@ class RegistrationForm extends React.Component {
 
         this.setState({ enableRegistrationButton: false });
 
-        // TODO CHANGE URL
-        fetch('http://localhost:8080/register', {
-            method: 'POST',
-            headers: {
-                Accept: 'application/json',
-                'Content-Type': 'application/json'
-            },
-            body: JSON.stringify({
-                mail: this.formData.get('registration-mail').value,
-                username: this.formData.get('registration-username').value,
-                password: this.formData.get('registration-password').value
-            })
-        })
-            .then(body => body.json())
-            .then(json =>
-                this.setState({
-                    responseText:
-                        (
-                            <Message
-                                type={json.success ? 'success' : 'error'}
-                            >
-                                {json.success ? json.message : json.error}
-                            </Message>
-                        )
-                }));
+        new Request('register', {
+            mail: this.formData.get('registration-mail').value,
+            username: this.formData.get('registration-username').value,
+            password: this.formData.get('registration-password').value
+        }).post()
+            .then(json => this.setState({
+                responseText:
+                    (
+                        <Message type={'success'}>
+                            {json.message}
+                        </Message>
+                    )
+            }))
+            .catch(json => this.setState({
+                responseText:
+                    (
+                        <Message type={'error'}>
+                            {json.error}
+                        </Message>
+                    )
+            }));
 
     }
 
