@@ -11,12 +11,6 @@ class Request {
 
         this.cookies = new Cookies();
 
-        if (this.cookies.get('token')) {
-
-            this.parameter.token = this.cookies.get('token');
-
-        }
-
     }
 
     post() {
@@ -25,7 +19,8 @@ class Request {
             method: 'POST',
             headers: {
                 Accept: 'application/json',
-                'Content-Type': 'application/json'
+                'Content-Type': 'application/json',
+                Authorization: this.cookies.get('token')
             },
             body: JSON.stringify(this.parameter)
         });
@@ -48,7 +43,8 @@ class Request {
         return this.request(path, {
             method: 'GET',
             headers: {
-                Accept: 'application/json'
+                Accept: 'application/json',
+                Authorization: this.cookies.get('token')
             }
         });
 

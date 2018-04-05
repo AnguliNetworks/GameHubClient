@@ -1,5 +1,4 @@
 import React, { Component } from 'react';
-import Cookies from 'universal-cookie';
 import './css/main.css';
 
 import Request, { setShowLogin } from './utility/Request';
@@ -17,8 +16,6 @@ class App extends Component {
         this.state = {
             loading: true
         };
-
-        this.cookies = new Cookies();
 
         this.loadUI = this.loadUI.bind(this);
 
@@ -39,12 +36,16 @@ class App extends Component {
 
         new Request('status').get()
             .then(() =>
-                new Request('authenticate').get()
+                new Request('authenticated').get()
                     .then(() =>
                         this.setState({
                             loading: false,
                             loggedIn: true
-                        })))
+                        }))
+                    .catch(() => this.setState({
+                        loading: false,
+                        loggedIn: false
+                    })))
             .catch(() => this.setState({ offline: true }));
 
     }
