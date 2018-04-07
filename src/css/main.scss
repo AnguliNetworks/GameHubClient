@@ -353,46 +353,61 @@ div.panel {
     background-color: transparent;
     border: none;
   }
+}
 
-  form.form {
-    padding: 30px 0;
-    label {
-      @include hidden();
-    }
-    input {
-      font-size: 14px;
-      margin-top: 10px;
-      color: #4f4f50;
-      width: 100%;
-      display: block;
-      padding: 9px 8px 7px;
-      outline: none;
-      border: 1px solid rgb(230, 230, 230);
-      border-radius: 3px;
-      @include transition(border-color $default-transition-time, color $default-transition-time, background-color $default-transition-time);
+form.form {
+  padding: 30px 0;
 
-      &::placeholder {
-        color: rgb(176, 176, 176);
-      }
+  label {
+    @include hidden();
+  }
 
-      &:focus {
-        border-color: #000;
-        color: #000;
-      }
-      &.invalid {
-        border-color: rgb(255, 59, 47);
-      }
+  div.file {
+  }
 
-      &.valid {
-        border-color: rgb(76, 217, 100);
-      }
+  input {
+    box-sizing: border-box;
+    font-size: 14px;
+    margin-top: 10px;
+    color: #4f4f50;
+    width: 100%;
+    display: block;
+    padding: 9px 8px 7px;
+    outline: none;
+    border: 1px solid rgb(230, 230, 230);
+    border-radius: 3px;
+    @include transition(border-color $default-transition-time, color $default-transition-time, background-color $default-transition-time);
+
+    &::placeholder {
+      color: rgb(176, 176, 176);
     }
 
-    p.info {
-      padding: 10px;
-      font-weight: 300;
-      font-size: 0.9em;
+    &:focus {
+      border-color: #000;
+      color: #000;
     }
+    &.invalid {
+      border-color: rgb(255, 59, 47);
+    }
+
+    &.valid {
+      border-color: rgb(76, 217, 100);
+    }
+
+    &[type="file"] {
+      &::before {
+        position: absolute;
+        left: 25px;
+        content: attr(placeholder);
+      }
+      padding-left: 100px;
+    }
+  }
+
+  p.info {
+    padding: 10px;
+    font-weight: 300;
+    font-size: 0.9em;
   }
 }
 

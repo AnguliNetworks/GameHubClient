@@ -9,6 +9,7 @@ import Avatar from '../../general/user/Avatar';
 import GameOverview from './game/Overview';
 
 import Request from '../../../utility/Request';
+import UserSettings from './Settings';
 
 class Launcher extends React.Component {
 
@@ -19,11 +20,14 @@ class Launcher extends React.Component {
         this.cookies = new Cookies();
 
         this.state = {
+            user: {},
             friends: [],
             games: []
         };
 
         this.logout = this.logout.bind(this);
+        this.bindSettingsModal = this.bindSettingsModal.bind(this);
+        this.loadUser = this.loadUser.bind(this);
 
         new Request('game/page/1').get()
             .then(json =>
@@ -37,6 +41,18 @@ class Launcher extends React.Component {
                     friends: json
                 }));
 
+        this.loadUser();
+
+    }
+
+    loadUser() {
+
+        new Request('user/info/me').get()
+            .then(json =>
+                this.setState({
+                    user: json
+                }));
+
     }
 
     logout() {
@@ -46,22 +62,30 @@ class Launcher extends React.Component {
 
     }
 
-    // TODO ADD API DATA
+    bindSettingsModal(modal) {
+
+        this.setState({ settings: modal });
+
+    }
+
     render() {
 
         return (
             <div className={'launcher'}>
+
+                <UserSettings bindModal={this.bindSettingsModal} loadUser={this.loadUser} />
+
                 <div className={'container'}>
                     <Column size={'small'}>
                         <Panel id={'profile'} transparent>
                             <UserInfo
-                                avatar={'https://pbs.twimg.com/profile_images/932304084253671425/HuOBI7ix_400x400.jpg'}
-                                username={'Fin'}
+                                avatar={this.state.user.avatar ? this.state.user.avatar : ''}
+                                username={this.state.user.username ? this.state.user.username : ''}
                                 status={'Online'}
                             />
                             <ul className={'inline-menu'}>
                                 <li className={'entry'}>
-                                    <Link link={'#'} color={'grey'}>
+                                    <Link modal={this.state.settings} color={'grey'}>
                                         Einstellungen
                                     </Link>
                                 </li>
@@ -98,7 +122,7 @@ class Launcher extends React.Component {
                                                 id={item.id}
                                                 icon={item.icon}
                                                 name={item.name}
-                                                status={'zuletzt gespielt: heute'}
+                                                status={item.author}
                                             />
                                         ))
                                 }

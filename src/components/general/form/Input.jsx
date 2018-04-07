@@ -22,7 +22,7 @@ class Input extends React.Component {
 
         if (this.props.onchange) {
 
-            this.props.onchange(this, value);
+            this.props.onchange(this, this.props.type === 'file' ? event.target.files[0] : value);
 
         }
 
@@ -40,7 +40,7 @@ class Input extends React.Component {
                 valid = /^[_A-Za-z0-9]+(\.[_A-Za-z0-9-]+)*@[A-Za-z0-9-]+(\.[A-Za-z0-9]+)*(\.[A-Za-z]{2,})$/.test(value);
                 break;
             case 'username':
-                valid = /^[a-zA-Z0-9_.-]{3,}$/.test(value);
+                valid = /^[a-zA-Z0-9_.-]{3,32}$/.test(value);
                 break;
             case 'password':
                 valid = /^(?=.*[A-Z])(?=.*[a-z])(?=.*\d)[A-Za-z\d!-}ä-üÄ-Üß §]{8,}$/.test(value);
@@ -81,7 +81,7 @@ class Input extends React.Component {
         }
 
         return (
-            <div>
+            <div className={this.props.type}>
                 <label htmlFor={this.props.id}>{this.props.children}</label>
                 <input {...attributes} />
             </div>

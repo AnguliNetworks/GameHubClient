@@ -1,5 +1,4 @@
 import React from 'react';
-import Cookies from 'universal-cookie';
 import PropTypes from 'prop-types';
 
 import Request from '../../../../utility/Request';
@@ -22,7 +21,6 @@ class LoginForm extends React.Component {
         };
 
         this.formData = new Map();
-        this.cookies = new Cookies();
 
         this.login = this.login.bind(this);
         this.setData = this.setData.bind(this);
