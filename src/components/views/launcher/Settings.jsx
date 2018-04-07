@@ -22,8 +22,6 @@ class UserSettings extends React.Component {
 
     uploadAvatar(input, value) {
 
-        console.log(value);
-
         switch (value.type) {
 
             case 'image/jpeg':
