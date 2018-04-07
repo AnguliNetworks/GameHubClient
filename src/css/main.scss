@@ -353,6 +353,15 @@ div.panel {
     background-color: transparent;
     border: none;
   }
+
+  hr {
+    display: block;
+    height: 1px;
+    border: 0;
+    border-top: 1px solid #b6b6b6;
+    margin: 1em 0 0;
+    padding: 0;
+  }
 }
 
 form.form {

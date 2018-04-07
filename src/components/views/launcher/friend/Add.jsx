@@ -1,11 +1,11 @@
 import React from 'react';
 import PropTypes from 'prop-types';
-import Message from '../../general/Message';
-import Modal from '../../general/modal/Modal';
-import Input from '../../general/form/Input';
-import Form from '../../general/form/Form';
-import Button from '../../general/form/Button';
-import Request from '../../../utility/Request';
+import Message from '../../../general/Message';
+import Modal from '../../../general/modal/Modal';
+import Input from '../../../general/form/Input';
+import Form from '../../../general/form/Form';
+import Button from '../../../general/form/Button';
+import Request from '../../../../utility/Request';
 
 class AddFriend extends React.Component {
 

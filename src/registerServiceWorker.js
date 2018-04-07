@@ -37,7 +37,7 @@ export default function register() {
                 // This is running on localhost. Lets check if a service worker still exists or not.
                 checkValidServiceWorker(swUrl);
 
-                // Add some additional logging to localhost, pointing developers to the
+                // AddFriend some additional logging to localhost, pointing developers to the
                 // service worker/PWA documentation.
                 navigator.serviceWorker.ready.then(() => {
                     console.log(

@@ -5,12 +5,10 @@ import Column from '../../general/Column';
 import Panel from '../../general/Panel';
 import UserInfo from '../../general/user/UserInfo';
 import Link from '../../general/Link';
-import Avatar from '../../general/user/Avatar';
 import GameOverview from './game/Overview';
-
 import Request from '../../../utility/Request';
 import UserSettings from './Settings';
-import AddFriend from './AddFriend';
+import FriendList from './friend/List';
 
 class Launcher extends React.Component {
 
@@ -22,25 +20,17 @@ class Launcher extends React.Component {
 
         this.state = {
             user: {},
-            friends: [],
             games: []
         };
 
         this.logout = this.logout.bind(this);
         this.bindSettingsModal = this.bindSettingsModal.bind(this);
-        this.bindAddFriendModal = this.bindAddFriendModal.bind(this);
         this.loadUser = this.loadUser.bind(this);
 
         new Request('game/page/1').get()
             .then(json =>
                 this.setState({
                     games: json
-                }));
-
-        new Request('friendship/list').get()
-            .then(json =>
-                this.setState({
-                    friends: json
                 }));
 
         this.loadUser();
@@ -70,19 +60,12 @@ class Launcher extends React.Component {
 
     }
 
-    bindAddFriendModal(modal) {
-
-        this.setState({ addFriend: modal });
-
-    }
-
     render() {
 
         return (
             <div className={'launcher'}>
 
                 <UserSettings bindModal={this.bindSettingsModal} loadUser={this.loadUser} />
-                <AddFriend bindModal={this.bindAddFriendModal} />
 
 
                 <div className={'container'}>
@@ -106,21 +89,7 @@ class Launcher extends React.Component {
                                 </li>
                             </ul>
                         </Panel>
-                        <Panel id={'friends'}>
-                            <h1 className={'title'}>
-                                Freunde
-                            </h1>
-                            <div className={'friend-list'}>
-                                {
-                                    this.state.friends.map(friend =>
-                                        <Avatar key={friend.name} src={friend.avatar} />)
-                                }
-                                <Avatar
-                                    src={'https://i.imgur.com/5ay16wZ.png'}
-                                    modal={this.state.addFriend}
-                                />
-                            </div>
-                        </Panel>
+                        <FriendList />
                     </Column>
                     <Column size={'large'}>
                         <Panel id={'games'}>
