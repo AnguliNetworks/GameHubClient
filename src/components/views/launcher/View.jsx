@@ -10,6 +10,7 @@ import GameOverview from './game/Overview';
 
 import Request from '../../../utility/Request';
 import UserSettings from './Settings';
+import AddFriend from './AddFriend';
 
 class Launcher extends React.Component {
 
@@ -27,6 +28,7 @@ class Launcher extends React.Component {
 
         this.logout = this.logout.bind(this);
         this.bindSettingsModal = this.bindSettingsModal.bind(this);
+        this.bindAddFriendModal = this.bindAddFriendModal.bind(this);
         this.loadUser = this.loadUser.bind(this);
 
         new Request('game/page/1').get()
@@ -68,12 +70,20 @@ class Launcher extends React.Component {
 
     }
 
+    bindAddFriendModal(modal) {
+
+        this.setState({ addFriend: modal });
+
+    }
+
     render() {
 
         return (
             <div className={'launcher'}>
 
                 <UserSettings bindModal={this.bindSettingsModal} loadUser={this.loadUser} />
+                <AddFriend bindModal={this.bindAddFriendModal} />
+
 
                 <div className={'container'}>
                     <Column size={'small'}>
@@ -105,6 +115,10 @@ class Launcher extends React.Component {
                                     this.state.friends.map(friend =>
                                         <Avatar key={friend.name} src={friend.avatar} />)
                                 }
+                                <Avatar
+                                    src={'https://i.imgur.com/5ay16wZ.png'}
+                                    modal={this.state.addFriend}
+                                />
                             </div>
                         </Panel>
                     </Column>

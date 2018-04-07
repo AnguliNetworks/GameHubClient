@@ -66,12 +66,9 @@ class Request {
                         this.cookies.remove('token');
                         showLogin();
                         break;
-                    case 400:
+                    default:
                         body.json()
                             .then(json => reject(json));
-                        break;
-                    default:
-                        reject(body.statusText);
 
                 }
 
