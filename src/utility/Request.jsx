@@ -1,5 +1,3 @@
-import Cookies from 'universal-cookie';
-
 let showLogin;
 
 class Request {
@@ -9,18 +7,16 @@ class Request {
         this.path = path;
         this.parameter = parameter;
 
-        this.cookies = new Cookies();
-
     }
 
     post() {
 
-        return this.request(this.path, {
+        return Request.request(this.path, {
             method: 'POST',
             headers: {
                 Accept: 'application/json',
                 'Content-Type': 'application/json',
-                Authorization: this.cookies.get('token')
+                Authorization: localStorage.getItem('token')
             },
             body: JSON.stringify(this.parameter)
         });
@@ -40,17 +36,17 @@ class Request {
 
         path = path.substr(0, path.length - 1);
 
-        return this.request(path, {
+        return Request.request(path, {
             method: 'GET',
             headers: {
                 Accept: 'application/json',
-                Authorization: this.cookies.get('token')
+                Authorization: localStorage.getItem('token')
             }
         });
 
     }
 
-    request(path, information) {
+    static request(path, information) {
 
         // TODO CHANGE URL
         return new Promise((resolve, reject) => fetch(`http://localhost:8080/${path}`, information)
@@ -63,7 +59,7 @@ class Request {
                             .then(json => resolve(json));
                         break;
                     case 403:
-                        this.cookies.remove('token');
+                        localStorage.setItem('token', null);
                         showLogin();
                         break;
                     default:

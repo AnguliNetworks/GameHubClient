@@ -1,6 +1,5 @@
 import React from 'react';
 import PropTypes from 'prop-types';
-import Cookies from 'universal-cookie';
 
 import RegistrationForm from './forms/RegistrationForm';
 import LoginForm from './forms/LoginForm';
@@ -15,8 +14,6 @@ class Login extends React.Component {
             currentForm: 'login'
         };
 
-        this.cookies = new Cookies();
-
         this.switchForm = this.switchForm.bind(this);
         this.login = this.login.bind(this);
 
@@ -24,7 +21,7 @@ class Login extends React.Component {
 
     login(token) {
 
-        this.cookies.set('token', token, { path: '/' });
+        localStorage.setItem('token', token);
         this.props.afterLogin();
 
     }
