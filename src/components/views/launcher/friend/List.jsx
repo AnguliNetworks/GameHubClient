@@ -1,4 +1,5 @@
 import React from 'react';
+import io from 'socket.io-client';
 import Avatar from '../../../general/user/Avatar';
 import Panel from '../../../general/Panel';
 import Request from '../../../../utility/Request';
@@ -21,6 +22,16 @@ class FriendList extends React.Component {
 
         this.bindAddFriendModal = this.bindAddFriendModal.bind(this);
         this.loadFriends = this.loadFriends.bind(this);
+
+        this.socket = io('localhost:8080');
+
+        this.socket.emit('authenticate', {
+            token: localStorage.getItem('token')
+        });
+
+        this.socket.on('message', (channel, data) => {
+
+        });
 
         this.loadFriends();
 
@@ -126,11 +137,18 @@ class FriendList extends React.Component {
                     <h1 className={'title'}>
                         Freunde
                     </h1>
+
+                    <div>
+                        <p>{this.state.socket}</p>
+                    </div>
+
                     <div className={'friend-list'}>
                         {
-                            this.state.friends.map(friend =>
-                                <Avatar key={friend.name}
-                                        src={friend.avatar} />)
+                            this.state.friends.map(friend => (
+                                <Avatar
+                                    key={friend.name}
+                                    src={friend.avatar}
+                                />))
                         }
                         <Avatar
                             src={'https://i.imgur.com/5ay16wZ.png'}
